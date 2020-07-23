@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "Error",
+    "test": "",
     "dev": "node index.js",
     "serve": "nodemon index.js",
     "lint": "standard"
