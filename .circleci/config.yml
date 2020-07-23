@@ -34,9 +34,11 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  workflow:
     jobs:
-      - build
-  test:
-    jobs:
-      - test
+      - build:
+          name: build-v0.1
+          version: 0.1
+      - test:
+          requires:
+            - build-v0.1
