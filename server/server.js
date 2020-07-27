@@ -18,6 +18,7 @@ db.once('open', () => console.log('Connected to database!'));
 
 var brandRouter = require('./routes/brand');
 var foodRouter = require('./routes/food');
+var leashRouter = require('./routes/leash');
 
 // Defining app
 const app = express();
@@ -33,6 +34,7 @@ app.use(serveStatic(__dirname + '/client/dist'));
 /* Defining the Routes */
 app.use(process.env.VETINVENTORY_ROUTE_BRAND, brandRouter);
 app.use(process.env.VETINVENTORY_ROUTE_FOOD, foodRouter);
+app.use(process.env.VETINVENTORY_ROUTE_LEASH, leashRouter);
 
 /* Listening to port */
 app.listen(port);
