@@ -24,16 +24,16 @@ function brandCreate(name, callback){
 		name : name
 	}
 
-	var brand = new Brand(branddetail);
+	var myBrand = new Brand(branddetail);
 
-	brand.save(function(err){
+	myBrand.save(function(err){
 		if(err){
 			callback(err, null);
 			return;
 		}
-		console.log('New Brand: ' + brand);
-		brand.push(brand);
-		callback(null, brand);
+		console.log('New Brand: ' + myBrand);
+		brand.push(myBrand);
+		callback(null, myBrand);
 	});
 }
 
@@ -47,17 +47,17 @@ function foodCreate(type, weigth, price_vet, price_public, brand, name, callback
 		name: name
 	}
 
-	var food = new Food(fooddetail);
+	var myFood = new Food(fooddetail);
 
-	food.save(function(err){
+	myFood.save(function(err){
 		if(err){
 			callback(err, null);
 			return;
 		}
 
-		console.log('New Food: ' + food);
-		food.push(food);
-		callback(null, food);
+		console.log('New Food: ' + myFood);
+		food.push(myFood);
+		callback(null, myFood);
 	});
 }
 
@@ -68,17 +68,17 @@ function foodInstanceCreate(food, receive_date, expiration_date, callback){
 		expiration_date: expiration_date
 	}
 
-	var foodinstance = new FoodInstance(foodinstancedetail);
+	var myFoodinstance = new FoodInstance(foodinstancedetail);
 
-	foodinstance.save(function(err){
+	myFoodinstance.save(function(err){
 		if(err){
-			console.log('ERROR CREATING FoodInstance: ' + foodinstance);
+			console.log('ERROR CREATING FoodInstance: ' + myFoodinstance);
 			callback(err, null);
 			return;
 		}
 
-		console.log('New FoodInstance: ' + foodinstance);
-		foodinstances.push(foodinstances);
+		console.log('New FoodInstance: ' + myFoodinstance);
+		foodinstances.push(myFoodinstance);
 		callback(null, food);
 	});
 }
@@ -92,17 +92,17 @@ function leashCreate(material, price_vet, price_public, brand, name, callback){
 		name: name
 	}
 
-	var leash = new Leash(leashdetail);
+	var myLeash = new Leash(leashdetail);
 
-	leash.save(function(err){
+	myLeash.save(function(err){
 		if(err){
 			callback(err, null);
 			return;
 		}
 
-		console.log('New Leash: ' + leash);
-		leash.push(leash);
-		callback(null, leash);
+		console.log('New Leash: ' + myLeash);
+		leash.push(myLeash);
+		callback(null, myLeash);
 	});
 }
 
@@ -112,17 +112,17 @@ function leashInstanceCreate(leash, receive_date, callback){
 		receive_date: receive_date
 	}
 
-	var leashinstance = new LeashInstance(leashinstancedetail);
+	var myLeashinstance = new LeashInstance(leashinstancedetail);
 
-	leashinstance.save(function(err){
+	myLeashinstance.save(function(err){
 		if(err){
-			console.log('ERROR CREATING LeashInstance: ' + leashinstance);
+			console.log('ERROR CREATING LeashInstance: ' + myLeashinstance);
 			callback(err, null);
 			return;
 		}
 
-		console.log('New LeashInstance: ' + leashinstance);
-		leashinstances.push(leashinstances);
+		console.log('New LeashInstance: ' + myLeashinstance);
+		leashinstances.push(myLeashinstance);
 		callback(null, leash);
 	});
 }
@@ -155,10 +155,10 @@ function createFood(callback){
 function createFoodInstances(callback){
 	async.parallel([
 		function(callback) {
-			foodInstanceCreate(food[0], '14/02/2020', '14/02/2021', callback)
+			foodInstanceCreate(food[0], '2020-02-14', '2021-02-14', callback)
 		},
 		function(callback) {
-			foodInstanceCreate(food[1], '14/02/2020', '14/02/2021', callback)
+			foodInstanceCreate(food[1], '2020-02-14', '2021-02-14', callback)
 		}
 	], callback);
 }
@@ -177,10 +177,10 @@ function createLeash(callback){
 function createLeashInstances(callback){
 	async.parallel([
 		function(callback) {
-			leashInstanceCreate(leash[0], '14/02/2020', callback)
+			leashInstanceCreate(leash[0], '2020-02-14', callback)
 		},
 		function(callback) {
-			leashInstanceCreate(leash[1], '14/02/2020', callback)
+			leashInstanceCreate(leash[1], '2020-02-14', callback)
 		}
 	], callback);
 }
@@ -188,8 +188,8 @@ function createLeashInstances(callback){
 async.series([
 	createBrands,
 	createFood,
-	createFoodInstances,
 	createLeash,
+	createFoodInstances,
 	createLeashInstances
 ], function(err, results){
 	if (err) {
