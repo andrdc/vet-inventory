@@ -1,12 +1,22 @@
 // Importing required modules
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import morgan from 'morgan';
-import winston from 'winston';
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const path = require('path');
+const serveStatic = require('serve-static');
 
-// Defining port
+/* Defining port */
 const port = process.env.PORT || 9000;
+
+/* Mongo DB */
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_VETINVENTORY, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to database!'));
+
+var brandRouter = require('./routes/brand');
 
 // Defining app
 const app = express();
@@ -16,16 +26,13 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.set('view engine', 'html');
-
 // Static folder
-app.use(express.static(__dirname + '/views/'));
+app.use(serveStatic(__dirname + '/client/dist'));
 
-// Defining the Routes
-app.use('/api', require('./routes/index'));
+/* Defining the Routes */
+app.use('/brand', brandRouter);
 
-// Listening to port
+/* Listening to port */
 app.listen(port);
-console.log(`Listening On http://localhost:${port}/api`);
 
 module.exports = app;
