@@ -20,6 +20,7 @@ var brandRouter = require('./routes/brand');
 var foodRouter = require('./routes/food');
 var leashRouter = require('./routes/leash');
 var foodinstanceRouter = require('./routes/foodinstance');
+var leashinstanceRouter = require('./routes/leashinstance');
 
 // Defining app
 const app = express();
@@ -37,6 +38,7 @@ app.use(process.env.VETINVENTORY_ROUTE_BRAND, brandRouter);
 app.use(process.env.VETINVENTORY_ROUTE_FOOD, foodRouter);
 app.use(process.env.VETINVENTORY_ROUTE_LEASH, leashRouter);
 app.use(process.env.VETINVENTORY_ROUTE_FOODINSTANCE, foodinstanceRouter);
+app.use(process.env.VETINVENTORY_ROUTE_LEASHINSTANCE, leashinstanceRouter);
 
 /* Listening to port */
 app.listen(port);
