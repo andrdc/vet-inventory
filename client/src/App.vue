@@ -1,24 +1,32 @@
 <template>
-	<div id="app">
-		<div id="nav">
-			<router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>
-		</div>
-		<router-view />
-	</div>
+<div id="app">
+	<SideBar></SideBar><!--
+						<div id="nav">
+						<router-link to="/">Home</router-link> |
+						<router-link to="/about">About</router-link>
+						</div>
+						<router-view /> -->
+</div>
 </template>
 
+<script>
+import SideBar from '@/components/SideBar';
+
+export default{
+	name: 'App',
+	components: {
+		SideBar
+	}
+};
+</script>
+
 <style lang="scss">
-// Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
-// Set your colors
+/* Set your colors */
 $primary: #92A8D1;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
 
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
 	"white": ($white, $black),
 	"black": ($black, $white),
@@ -29,15 +37,14 @@ $colors: (
 	"success": ($success, $success-invert),
 	"warning": ($warning, $warning-invert),
 	"danger": ($danger, $danger-invert),
-	"twitter": ($twitter, $twitter-invert)
 );
 
-// Links
+/* Links */
 $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
-// Import Bulma and Buefy styles
+/* Import Bulma and Buefy styles */
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 </style>
