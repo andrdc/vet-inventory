@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<div class="header">
-			<b-button @click="open = true" icon-pack="fas" icon-left="bars">Menu</b-button>
+			<b-button @click="changeSideBarState()" icon-pack="fas" icon-left="bars">Menu</b-button>
 			<Header></Header>
 		</div>
 		<b-sidebar
@@ -14,7 +14,7 @@
 				<h1 class="has-text-primary">Inventory</h1>
 				<b-menu>
 					<b-menu-list label="Menu">
-						<span @click="closeSideBar()">
+						<span @click="changeSideBarState()">
 							<b-menu-item icon-pack="fas"
 										 icon="info"
 										 label="Home"
@@ -22,7 +22,7 @@
 										 to="/">
 							</b-menu-item>
 						</span>
-						<span @click="closeSideBar()">
+						<span @click="changeSideBarState()">
 							<b-menu-item label="About"
 										 icon-pack="fas"
 										 icon="link"
@@ -52,8 +52,11 @@ export default{
 		};
 	},
 	methods: {
-		closeSideBar(){
-			this.open = false;
+		changeSideBarState(){
+			if(this.open)
+				this.open = false;
+			else
+				this.open = true;
 		}
 	}
 };
@@ -69,5 +72,6 @@ export default{
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
+	padding: 0 1rem 0 0.25rem;
 }
 </style>
