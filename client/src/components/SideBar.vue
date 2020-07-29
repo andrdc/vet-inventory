@@ -1,6 +1,9 @@
 <template>
 	<section>
-		<b-button @click="open = true" class="mx-5 my-5" icon-pack="fas" icon-left="bars">Menu</b-button>
+		<div class="header">
+			<b-button @click="open = true" icon-pack="fas" icon-left="bars">Menu</b-button>
+			<Header></Header>
+		</div>
 		<b-sidebar
 			type="is-light"
 			:fullheight="fullheight"
@@ -35,7 +38,12 @@
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
+
 export default{
+	components: {
+		Header
+	},
 	data(){
 		return{
 			open: false,
@@ -54,5 +62,12 @@ export default{
 <style scoped>
 .p-1 {
 	padding: 1em;
+}
+
+.header {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
 }
 </style>
