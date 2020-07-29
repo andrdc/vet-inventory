@@ -16,18 +16,18 @@
 					<b-menu-list label="Menu">
 						<span @click="changeSideBarState()">
 							<b-menu-item icon-pack="fas"
-										 icon="info"
+										 icon="home"
 										 label="Home"
 										 tag="router-link"
 										 to="/">
 							</b-menu-item>
 						</span>
 						<span @click="changeSideBarState()">
-							<b-menu-item label="About"
+							<b-menu-item label="Brands"
 										 icon-pack="fas"
-										 icon="link"
+										 icon="archive"
 										 tag="router-link"
-										 to="/about">
+										 to="/brands">
 							</b-menu-item>
 						</span>
 					</b-menu-list>
