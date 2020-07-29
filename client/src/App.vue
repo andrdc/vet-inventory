@@ -1,11 +1,7 @@
 <template>
 <div id="app">
-	<SideBar></SideBar><!--
-						<div id="nav">
-						<router-link to="/">Home</router-link> |
-						<router-link to="/about">About</router-link>
-						</div>
-						<router-view /> -->
+	<SideBar></SideBar>
+	<router-view />
 </div>
 </template>
 
@@ -24,7 +20,7 @@ export default{
 @import "~bulma/sass/utilities/_all";
 
 /* Set your colors */
-$primary: #92A8D1;
+$primary: #2A4B7C;
 $primary-invert: findColorInvert($primary);
 
 $colors: (
