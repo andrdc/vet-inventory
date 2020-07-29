@@ -1,22 +1,26 @@
 <template>
 	<div class="home">
 		<h2 class="is-size-3">Food</h2>
-		<div class="instance" v-for="(foodinstance, index) in foodinstances" :key="index">
-			{{ foodinstance.food.name }}, {{ foodinstance.food.weigth }} KG.
-			<br>
-			({{ foodinstance.food.type }}), {{ foodinstance.food.brand.name }}.
-			<br>
-			Received: {{ foodinstance.receive_date }}.
-			<br>
-			Expiration: {{ foodinstance.expiration_date }}.
+		<div class="instances-container">
+			<div class="instance" v-for="(foodinstance, index) in foodinstances" :key="index">
+				{{ foodinstance.food.name }}, {{ foodinstance.food.weigth }} KG.
+				<br>
+				({{ foodinstance.food.type }}), {{ foodinstance.food.brand.name }}.
+				<br>
+				Received: {{ foodinstance.receive_date }}.
+				<br>
+				Expiration: {{ foodinstance.expiration_date }}.
+			</div>
 		</div>
 		<h2 class="is-size-3">Leash</h2>
-		<div class="instance" v-for="(leashinstance, index) in leashinstances" :key="index">
-			{{ leashinstance.leash.name }} ({{ leashinstance.leash.material }}).
-			<br>
-			{{ leashinstance.leash.brand.name }}.
-			<br>
-			Received: {{ leashinstance.receive_date }}.
+		<div class="instances-container">
+			<div class="instance" v-for="(leashinstance, index) in leashinstances" :key="index">
+				{{ leashinstance.leash.name }} ({{ leashinstance.leash.material }}).
+				<br>
+				{{ leashinstance.leash.brand.name }}.
+				<br>
+				Received: {{ leashinstance.receive_date }}.
+			</div>
 		</div>
 	</div>
 </template>
@@ -83,6 +87,13 @@ export default {
 .home {
 	margin: 5px;
 	padding: 5px;
+}
+
+.instances-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-content: flex-start;
 }
 
 .instance {
