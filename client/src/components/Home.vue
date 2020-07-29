@@ -2,7 +2,10 @@
 	<div class="home">
 		<h2 class="is-size-3">Food</h2>
 		<div class="instances-container">
-			<div class="instance" v-for="(foodinstance, index) in foodinstances" :key="index">
+			<div class="instance"
+				 @click="food()"
+				 v-for="(foodinstance, index) in foodinstances"
+				 :key="index">
 				{{ foodinstance.food.name }}, {{ foodinstance.food.weigth }} KG.
 				<br>
 				({{ foodinstance.food.type }}), {{ foodinstance.food.brand.name }}.
@@ -14,7 +17,10 @@
 		</div>
 		<h2 class="is-size-3">Leash</h2>
 		<div class="instances-container">
-			<div class="instance" v-for="(leashinstance, index) in leashinstances" :key="index">
+			<div class="instance"
+				 @click="leash()"
+				 v-for="(leashinstance, index) in leashinstances"
+				 :key="index">
 				{{ leashinstance.leash.name }} ({{ leashinstance.leash.material }}).
 				<br>
 				{{ leashinstance.leash.brand.name }}.
@@ -37,6 +43,12 @@ export default {
 		}
 	},
 	methods: {
+		food(){
+			console.log('You clicked a food instance');
+		},
+		leash(){
+			console.log('You clicked a leash instance');
+		},
 		getFoodInstances(){
 			axios.get(process.env.VUE_APP_FOOD_INSTANCES)
 				 .then((response) => {
@@ -101,5 +113,6 @@ export default {
 	border-radius: 5px;
 	margin: 10px;
 	padding: 5px;
+	cursor: pointer;
 }
 </style>
