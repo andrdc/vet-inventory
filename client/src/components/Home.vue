@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<div class="food-instances" v-for="(foodinstance, index) in foodinstances" :key="index">
+		<div class="instance" v-for="(foodinstance, index) in foodinstances" :key="index">
 			{{ foodinstance.food.type }}
 			{{ foodinstance.food.brand.name }}
 			{{ foodinstance.receive_date }}
@@ -49,6 +49,13 @@ export default {
 <style scoped>
 .home {
 	margin: 5px;
+	padding: 5px;
+}
+
+.instance {
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 10px;
 	padding: 5px;
 }
 </style>
