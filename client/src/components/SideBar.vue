@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<b-button @click="open = true" class="mx-5 my-5">Show</b-button>
+		<b-button @click="open = true" class="mx-5 my-5" icon-pack="fas" icon-left="bars">Menu</b-button>
 		<b-sidebar
 			type="is-light"
 			:fullheight="fullheight"
@@ -11,18 +11,22 @@
 				<h1 class="has-text-primary">Inventory</h1>
 				<b-menu>
 					<b-menu-list label="Menu">
-						<b-menu-item icon-pack="fas"
-									 icon="info"
-									 label="Home"
-									 tag="router-link"
-									 to="/">
-						</b-menu-item>
-						<b-menu-item label="About"
-									 icon-pack="fas"
-									 icon="link"
-									 tag="router-link"
-									 to="/about">
-						</b-menu-item>
+						<span @click="closeSideBar()">
+							<b-menu-item icon-pack="fas"
+										 icon="info"
+										 label="Home"
+										 tag="router-link"
+										 to="/">
+							</b-menu-item>
+						</span>
+						<span @click="closeSideBar()">
+							<b-menu-item label="About"
+										 icon-pack="fas"
+										 icon="link"
+										 tag="router-link"
+										 to="/about">
+							</b-menu-item>
+						</span>
 					</b-menu-list>
 				</b-menu>
 			</div>
@@ -38,6 +42,11 @@ export default{
 			overlay: true,
 			fullheight: true,
 		};
+	},
+	methods: {
+		closeSideBar(){
+			this.open = false;
+		}
 	}
 };
 </script>
