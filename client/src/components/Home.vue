@@ -51,6 +51,9 @@ export default {
 		leash(){
 			console.log('You clicked a leash instance');
 		},
+		/* Get all the food instances from the API
+		/* @param none : none
+		/* @return none : none */
 		getFoodInstances(){
 			axios.get(process.env.VUE_APP_FOOD_INSTANCES).then((response) => {
 				console.log(response);
@@ -69,6 +72,9 @@ export default {
 				console.log(error.config);
 			});
 		},
+		/* Get all the leash instances from the API
+		/* @param none : none
+		/* @return none : none */
 		getLeashInstances(){
 			axios.get(process.env.VUE_APP_LEASH_INSTANCES).then((response) => {
 				console.log(response);
@@ -87,12 +93,18 @@ export default {
 				console.log(error.config);
 			});
 		},
+		/* Format dates of Food instances
+		/* @param none : none
+		/* @return none : none */
 		formatFoodDates(){
 			this.foodinstances.forEach(instance => {
 				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
 				instance.expiration_date = moment(instance.expiration_date).format(this.dateFormat);
 			});
 		},
+		/* Format dates of Leash instances
+		/* @param none : none
+		/* @return none : none */
 		formatLeashDates(){
 			this.leashinstances.forEach(instance => {
 				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
