@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./components/Home.vue";
-import About from "./views/About.vue";
+import Brands from "./components/Brands.vue";
 import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
@@ -16,9 +16,9 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: "/about",
-			name: "about",
-			component: About
+			path: "/brands",
+			name: "brands",
+			component: Brands
 		},
 		{
 			path: "*",
