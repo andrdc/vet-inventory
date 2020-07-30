@@ -3,10 +3,12 @@
 		<h2 class="is-size-3">Leashes</h2>
 		<div class="leashes-container">
 			<div class="leash"
-				 @click="goToFood()"
+				 @click="goToLeash()"
 				 v-for="(leash, index) in leashes"
 				 :key="index">
-				{{ leash.name }}
+				{{ leash.name }} ({{ leash.material }}).
+				<br>
+				{{ leash.brand.name }}.
 			</div>
 		</div>
 	</div>
@@ -30,7 +32,7 @@ export default {
 		/* @param none : none
 		/* @return none : none */
 		getLeashes(){
-			axios.get(process.env.VUE_APP_FOODS).then((response) => {
+			axios.get(process.env.VUE_APP_LEASHES).then((response) => {
 				console.log(response);
 				this.leashes = response.data;
 			}).catch((error) => {
