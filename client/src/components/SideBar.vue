@@ -38,6 +38,14 @@
 										 to="/foods">
 							</b-menu-item>
 						</span>
+						<span @click="changeSideBarState()">
+							<b-menu-item label="Leashes"
+										 icon-pack="fas"
+										 icon="archive"
+										 tag="router-link"
+										 to="/leashes">
+							</b-menu-item>
+						</span>
 					</b-menu-list>
 				</b-menu>
 			</div>
