@@ -33,13 +33,15 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
 	name: "home",
 	data(){
 		return{
 			foodinstances: null,
-			leashinstances: null
+			leashinstances: null,
+			dateFormat: 'DD-MM-YYYY'
 		}
 	},
 	methods: {
@@ -54,6 +56,7 @@ export default {
 				 .then((response) => {
 					console.log(response);
 					this.foodinstances = response.data;
+					this.formatFoodDates();
 				})
 				 .catch((error) => {
 					if(error.response){
@@ -73,6 +76,7 @@ export default {
 				 .then((response) => {
 					console.log(response);
 					this.leashinstances = response.data;
+					this.formatLeashDates();
 				})
 				 .catch((error) => {
 					if(error.response){
@@ -86,6 +90,17 @@ export default {
 					}
 					console.log(error.config);
 				});
+		},
+		formatFoodDates(){
+			this.foodinstances.forEach(instance => {
+				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
+				instance.expiration_date = moment(instance.expiration_date).format(this.dateFormat);
+			});
+		},
+		formatLeashDates(){
+			this.leashinstances.forEach(instance => {
+				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
+			});
 		}
 	},
 	mounted(){
