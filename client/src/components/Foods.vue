@@ -33,7 +33,6 @@ export default {
 		/* @return none : none */
 		getFoods(){
 			axios.get(process.env.VUE_APP_FOODS).then((response) => {
-				console.log(response);
 				this.foods = response.data;
 			}).catch((error) => {
 				if(error.response){

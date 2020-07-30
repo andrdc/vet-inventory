@@ -33,7 +33,6 @@ export default {
 		/* @return none : none */
 		getLeashes(){
 			axios.get(process.env.VUE_APP_LEASHES).then((response) => {
-				console.log(response);
 				this.leashes = response.data;
 			}).catch((error) => {
 				if(error.response){

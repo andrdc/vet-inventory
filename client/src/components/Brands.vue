@@ -31,7 +31,6 @@ export default {
 		/* @return none : none */
 		getBrands(){
 			axios.get(process.env.VUE_APP_BRANDS).then((response) => {
-				console.log(response);
 				this.brands = response.data;
 			}).catch((error) => {
 				if(error.response){

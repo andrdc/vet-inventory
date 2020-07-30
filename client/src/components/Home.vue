@@ -56,7 +56,6 @@ export default {
 		/* @return none : none */
 		getFoodInstances(){
 			axios.get(process.env.VUE_APP_FOOD_INSTANCES).then((response) => {
-				console.log(response);
 				this.foodinstances = response.data;
 				this.formatFoodDates();
 			}).catch((error) => {
@@ -77,7 +76,6 @@ export default {
 		/* @return none : none */
 		getLeashInstances(){
 			axios.get(process.env.VUE_APP_LEASH_INSTANCES).then((response) => {
-				console.log(response);
 				this.leashinstances = response.data;
 				this.formatLeashDates();
 			}).catch((error) => {
