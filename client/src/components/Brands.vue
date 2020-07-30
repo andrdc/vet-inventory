@@ -26,6 +26,9 @@ export default {
 		goToBrand(){
 			console.log('You clicked a brand');
 		},
+		/* Get all the brands from the API
+		/* @param none : none
+		/* @return none : none */
 		getBrands(){
 			axios.get(process.env.VUE_APP_BRANDS).then((response) => {
 				console.log(response);
