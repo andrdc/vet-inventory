@@ -1,6 +1,14 @@
 <template>
 	<div class="foods">
-		<h2 class="is-size-3">Foods</h2>
+		<div class="title-container">
+			<h2 class="is-size-3">Foods</h2>
+			<b-button type="is-primary"
+					  icon-pack="fas"
+					  icon-left="plus"
+					  @click="createFood()">
+				Add
+			</b-button>
+		</div>
 		<div class="foods-container">
 			<div class="food"
 				 @click="goToFood()"
@@ -46,7 +54,8 @@ export default {
 				}
 				console.log(error.config);
 			});
-		}
+		},
+		createFood(){ console.log('Create new Food'); }
 	},
 	mounted(){
 		this.getFoods();
@@ -58,6 +67,17 @@ export default {
 .foods {
 	margin: 5px;
 	padding: 5px;
+}
+
+.title-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title-container > button {
+	margin-left: 10px;
 }
 
 .foods-container {
