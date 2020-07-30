@@ -1,6 +1,14 @@
 <template>
 	<div class="leashes">
-		<h2 class="is-size-3">Leashes</h2>
+		<div class="title-container">
+			<h2 class="is-size-3">Leashes</h2>
+			<b-button type="is-primary"
+					  icon-pack="fas"
+					  icon-left="plus"
+					  @click="createLeash()">
+				Add
+			</b-button>
+		</div>
 		<div class="leashes-container">
 			<div class="leash"
 				 @click="goToLeash()"
@@ -46,7 +54,8 @@ export default {
 				}
 				console.log(error.config);
 			});
-		}
+		},
+		createLeash(){ console.log('Create new Leash'); }
 	},
 	mounted(){
 		this.getLeashes();
@@ -58,6 +67,17 @@ export default {
 .leashes {
 	margin: 5px;
 	padding: 5px;
+}
+
+.title-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title-container > button {
+	margin-left: 10px;
 }
 
 .leashes-container {
