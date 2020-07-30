@@ -1,17 +1,51 @@
 <template>
 	<div class="brands">
 		<h2 class="is-size-3">Brands</h2>
+		<div class="brands-container">
+			<div class="brand"
+				 @click="goToBrand()"
+				 v-for="(brand, index) in brands"
+				 :key="index">
+				{{ brand.name }}
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'brands',
 	data(){
 		return{
+			brands: null
 		}
 	},
 	methods: {
+		goToBrand(){
+			console.log('You clicked a brand');
+		},
+		getBrands(){
+			axios.get(process.env.VUE_APP_BRANDS).then((response) => {
+				console.log(response);
+				this.brands = response.data;
+			}).catch((error) => {
+				if(error.response){
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				}else if(error.request){
+					console.log(error.request);
+				}else{
+					console.log('Error', error.message);
+				}
+				console.log(error.config);
+			});
+		}
+	},
+	mounted(){
+		this.getBrands();
 	}
 }
 </script>
@@ -20,5 +54,20 @@ export default {
 .brands {
 	margin: 5px;
 	padding: 5px;
+}
+
+.brands-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+}
+
+.brand {
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 10px;
+	cursor: pointer;
 }
 </style>
