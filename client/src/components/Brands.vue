@@ -1,6 +1,14 @@
 <template>
 	<div class="brands">
-		<h2 class="is-size-3">Brands</h2>
+		<div class="title-container">
+			<h2 class="is-size-3">Brands</h2>
+			<b-button type="is-primary"
+					  icon-pack="fas"
+					  icon-left="plus"
+					  @click="createBrand()">
+				Add
+			</b-button>
+		</div>
 		<div class="brands-container">
 			<div class="brand"
 				 @click="goToBrand()"
@@ -44,7 +52,8 @@ export default {
 				}
 				console.log(error.config);
 			});
-		}
+		},
+		createBrand(){ console.log('Create new Brand'); }
 	},
 	mounted(){
 		this.getBrands();
@@ -56,6 +65,17 @@ export default {
 .brands {
 	margin: 5px;
 	padding: 5px;
+}
+
+.title-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title-container > button {
+	margin-left: 10px;
 }
 
 .brands-container {
