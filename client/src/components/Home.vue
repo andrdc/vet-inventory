@@ -1,6 +1,14 @@
 <template>
 	<div class="home">
-		<h2 class="is-size-3">Food</h2>
+		<div class="title-container">
+			<h2 class="is-size-3">Food</h2>
+			<b-button type="is-primary"
+					  icon-pack="fas"
+					  icon-left="plus"
+					  @click="createFoodInstance()">
+				Add
+			</b-button>
+		</div>
 		<div class="instances-container">
 			<div class="instance"
 				 @click="food()"
@@ -15,7 +23,15 @@
 				Expiration: {{ foodinstance.expiration_date }}.
 			</div>
 		</div>
-		<h2 class="is-size-3">Leash</h2>
+		<div class="title-container">
+			<h2 class="is-size-3">Leash</h2>
+			<b-button type="is-primary"
+					  icon-pack="fas"
+					  icon-left="plus"
+					  @click="createLeashInstance()">
+				Add
+			</b-button>
+		</div>
 		<div class="instances-container">
 			<div class="instance"
 				 @click="leash()"
@@ -107,7 +123,9 @@ export default {
 			this.leashinstances.forEach(instance => {
 				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
 			});
-		}
+		},
+		createFoodInstance(){ console.log('Create new Food instance' ); },
+		createLeashInstance(){ console.log('Create new Leash instance' ); }
 	},
 	mounted(){
 		this.getFoodInstances();
@@ -120,6 +138,17 @@ export default {
 .home {
 	margin: 5px;
 	padding: 5px;
+}
+
+.title-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title-container > button {
+	margin-left: 10px;
 }
 
 .instances-container {
