@@ -30,6 +30,14 @@
 										 to="/brands">
 							</b-menu-item>
 						</span>
+						<span @click="changeSideBarState()">
+							<b-menu-item label="Foods"
+										 icon-pack="fas"
+										 icon="archive"
+										 tag="router-link"
+										 to="/foods">
+							</b-menu-item>
+						</span>
 					</b-menu-list>
 				</b-menu>
 			</div>
