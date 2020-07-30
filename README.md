@@ -18,6 +18,9 @@ If you want to clone or fork this repo you'll need the following:
   * VETINVENTORY_ROUTE_FOODINSTANCE
   * VETINVENTORY_ROUTE_LEASHINSTANCE
 
+## What have I learned?
+* Create an API with NodeJS.
+* [CRUD](https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete) methods.
 
 ## Acknowledgement
 This project was made posible thanks to [The Odin Project](https://www.theodinproject.com/).
