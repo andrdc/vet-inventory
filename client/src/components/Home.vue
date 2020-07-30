@@ -53,39 +53,39 @@ export default {
 		},
 		getFoodInstances(){
 			axios.get(process.env.VUE_APP_FOOD_INSTANCES).then((response) => {
-					console.log(response);
-					this.foodinstances = response.data;
-					this.formatFoodDates();
-				}).catch((error) => {
-					if(error.response){
-						console.log(error.response.data);
-						console.log(error.response.status);
-						console.log(error.response.headers);
-					}else if(error.request){
-						console.log(error.request);
-					}else{
-						console.log('Error', error.message);
-					}
-					console.log(error.config);
-				});
+				console.log(response);
+				this.foodinstances = response.data;
+				this.formatFoodDates();
+			}).catch((error) => {
+				if(error.response){
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				}else if(error.request){
+					console.log(error.request);
+				}else{
+					console.log('Error', error.message);
+				}
+				console.log(error.config);
+			});
 		},
 		getLeashInstances(){
 			axios.get(process.env.VUE_APP_LEASH_INSTANCES).then((response) => {
-					console.log(response);
-					this.leashinstances = response.data;
-					this.formatLeashDates();
-				}).catch((error) => {
-					if(error.response){
-						console.log(error.response.data);
-						console.log(error.response.status);
-						console.log(error.response.headers);
-					}else if(error.request){
-						console.log(error.request);
-					}else{
-						console.log('Error', error.message);
-					}
-					console.log(error.config);
-				});
+				console.log(response);
+				this.leashinstances = response.data;
+				this.formatLeashDates();
+			}).catch((error) => {
+				if(error.response){
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				}else if(error.request){
+					console.log(error.request);
+				}else{
+					console.log('Error', error.message);
+				}
+				console.log(error.config);
+			});
 		},
 		formatFoodDates(){
 			this.foodinstances.forEach(instance => {
