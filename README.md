@@ -1,6 +1,24 @@
 # Vet Inventory App
 [The Odin Project](https://www.theodinproject.com/) - [Project Inventory App](https://www.theodinproject.com/courses/nodejs/lessons/inventory-application).
 
+## Getting Started
+If you want to clone or fork this repo you'll need the following:
+* .env file in the client folder. This file needs the variables listed
+  down here. Each variable is the corresponding URL for your API's calls.
+  * VUE_APP_FOOD_INSTANCES
+  * VUE_APP_LEASH_INSTANCES
+  * VUE_APP_BRANDS
+  * VUE_APP_FOODS
+  * VUE_APP_LEASHES
+* Environment Variables for the API:
+  * MONGODB_VETINVENTORY (URL of the database)
+  * VETINVENTORY_ROUTE_BRAND
+  * VETINVENTORY_ROUTE_FOOD
+  * VETINVENTORY_ROUTE_LEASH
+  * VETINVENTORY_ROUTE_FOODINSTANCE
+  * VETINVENTORY_ROUTE_LEASHINSTANCE
+
+
 ## Acknowledgement
 This project was made posible thanks to [The Odin Project](https://www.theodinproject.com/).
 
