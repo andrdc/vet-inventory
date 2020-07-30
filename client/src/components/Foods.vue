@@ -31,7 +31,7 @@ export default {
 		/* Get all the foods from the API
 		/* @param none : none
 		/* @return none : none */
-		getBrands(){
+		getFoods(){
 			axios.get(process.env.VUE_APP_FOODS).then((response) => {
 				console.log(response);
 				this.foods = response.data;
@@ -50,7 +50,7 @@ export default {
 		}
 	},
 	mounted(){
-		this.getBrands();
+		this.getFoods();
 	}
 }
 </script>
