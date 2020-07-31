@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./components/Home.vue";
 import Brands from "./components/Brands.vue";
+import CreateBrand from "./components/CreateBrand.vue";
 import Foods from "./components/Foods.vue";
 import Leashes from "./components/Leashes.vue";
 import NotFound from "./views/NotFound.vue";
@@ -21,6 +22,11 @@ export default new Router({
 			path: "/brands",
 			name: "brands",
 			component: Brands
+		},
+		{
+			path: "/brand/create",
+			name: "create-brand",
+			component: CreateBrand
 		},
 		{
 			path: "/foods",
