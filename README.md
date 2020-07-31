@@ -20,7 +20,9 @@ If you want to clone or fork this repo you'll need the following:
 
 ## What have I learned?
 * Create an API with NodeJS.
-* [CRUD](https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete) methods.
+* [CRUD](https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete)
+  methods.
+* Vue Router.
 
 ## Acknowledgement
 This project was made posible thanks to [The Odin Project](https://www.theodinproject.com/).
