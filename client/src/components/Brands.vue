@@ -5,7 +5,8 @@
 			<b-button type="is-primary"
 					  icon-pack="fas"
 					  icon-left="plus"
-					  @click="createBrand()">
+					  tag="router-link"
+					  to="/brand/create">
 				Add
 			</b-button>
 		</div>
@@ -52,8 +53,7 @@ export default {
 				}
 				console.log(error.config);
 			});
-		},
-		createBrand(){ console.log('Create new Brand'); }
+		}
 	},
 	mounted(){
 		this.getBrands();
