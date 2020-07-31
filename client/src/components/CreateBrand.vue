@@ -16,7 +16,8 @@
 						</template>
 						<b-input type="text"
 								 :pattern=regex
-								 title="Only characters, no numbers"
+								 :title=errorMessage
+								 min-length=5
 								 maxlength=20
 								 v-model="name"></b-input>
 					</b-field>
@@ -35,22 +36,29 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'create-brand',
 	data(){
 		return{
 			name: '',
 			submitDisabled: true,
-			regex: '[a-zA-Z]'
+			/* Match any string with any letters that occurs at least 5 times. */
+			regex: '^[a-zA-Z]{5,}$',
+			errorMessage: 'Only characters, no numbers'
 		}
 	},
 	methods: {
 		createBrand(){
 			if(this.name.match(this.regex)){
-				console.log('Create new Brand: ' + this.name );
-				this.name = '';
+				axios.post(process.env.VUE_APP_BRANDS, {
+					name: this.name,
+				});
+				this.clearInput();
 			}
-		}
+		},
+		clearInput(){ this.name = ''; }
 	},
 	watch: {
 		name: function(){
