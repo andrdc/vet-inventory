@@ -15,6 +15,8 @@
 							</b-tooltip>
 						</template>
 						<b-input type="text"
+								 :pattern=regex
+								 title="Only characters, no numbers"
 								 maxlength=20
 								 v-model="name"></b-input>
 					</b-field>
@@ -38,13 +40,16 @@ export default {
 	data(){
 		return{
 			name: '',
-			submitDisabled: true
+			submitDisabled: true,
+			regex: '[a-zA-Z]'
 		}
 	},
 	methods: {
 		createBrand(){
-			console.log('Create new Brand: ' + this.name );
-			this.name = '';
+			if(this.name.match(this.regex)){
+				console.log('Create new Brand: ' + this.name );
+				this.name = '';
+			}
 		}
 	},
 	watch: {
