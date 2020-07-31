@@ -12,7 +12,7 @@
 		</div>
 		<div class="brands-container">
 			<div class="brand"
-				 @click="goToBrand()"
+				 @click="goToBrand(brand)"
 				 v-for="(brand, index) in brands"
 				 :key="index">
 				{{ brand.name }}
@@ -32,8 +32,8 @@ export default {
 		}
 	},
 	methods: {
-		goToBrand(){
-			console.log('You clicked a brand');
+		goToBrand(brand){
+			console.log(brand._id);
 		},
 		/* Get all the brands from the API
 		/* @param none : none
