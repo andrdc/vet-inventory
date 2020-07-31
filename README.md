@@ -23,6 +23,7 @@ If you want to clone or fork this repo you'll need the following:
 * [CRUD](https://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete)
   methods.
 * Vue Router.
+* Use of Regular Expressions.
 
 ## Acknowledgement
 This project was made posible thanks to [The Odin Project](https://www.theodinproject.com/).
