@@ -50,6 +50,9 @@ export default {
 		}
 	},
 	methods: {
+		/* POST method to the API to create a new brand
+		/* @param none : none
+		/* @return none : none */
 		createBrand(){
 			if(this.name.match(this.regex)){
 				axios.post(process.env.VUE_APP_BRANDS, {
