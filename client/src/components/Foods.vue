@@ -5,7 +5,8 @@
 			<b-button type="is-primary"
 					  icon-pack="fas"
 					  icon-left="plus"
-					  @click="createFood()">
+					  tag="router-link"
+					  to="/food/create">
 				Add
 			</b-button>
 		</div>
@@ -54,8 +55,7 @@ export default {
 				}
 				console.log(error.config);
 			});
-		},
-		createFood(){ console.log('Create new Food'); }
+		}
 	},
 	mounted(){
 		this.getFoods();
