@@ -6,6 +6,7 @@ import CreateBrand from "./components/CreateBrand.vue";
 import Foods from "./components/Foods.vue";
 import CreateFood from "./components/CreateFood.vue";
 import Leashes from "./components/Leashes.vue";
+import CreateLeash from "./components/CreateLeash.vue";
 import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
@@ -43,6 +44,11 @@ export default new Router({
 			path: "/leashes",
 			name: "leashes",
 			component: Leashes
+		},
+		{
+			path: "/leash/create",
+			name: "create-leash",
+			component: CreateLeash
 		},
 		{
 			path: "*",
