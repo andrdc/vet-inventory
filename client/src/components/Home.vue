@@ -3,9 +3,10 @@
 		<div class="title-container">
 			<h2 class="is-size-3">Food</h2>
 			<b-button type="is-primary"
+					  tag="router-link"
+					  to="food-instance/create"
 					  icon-pack="fas"
-					  icon-left="plus"
-					  @click="createFoodInstance()">
+					  icon-left="plus">
 				Add
 			</b-button>
 		</div>
@@ -126,7 +127,6 @@ export default {
 				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
 			});
 		},
-		createFoodInstance(){ console.log('Create new Food instance' ); },
 		createLeashInstance(){ console.log('Create new Leash instance' ); }
 	},
 	mounted(){
