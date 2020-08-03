@@ -13,3 +13,20 @@ exports.foodinstances = (req, res, next) => {
 					res.json(foodinstances);
 				});
 };
+
+/* Create new Food Instance */
+exports.create_foodinstance = (req, res, next) => {
+	let foodinstance = new FoodInstance({
+		food: req.body.food,
+		receive_date: req.body.receive_date,
+		expiration_date: req.body.expiration_date
+	});
+
+	foodinstance.save((err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(foodinstance);
+	})
+}
