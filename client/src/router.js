@@ -8,6 +8,7 @@ import CreateFood from "./components/CreateFood.vue";
 import CreateFoodInstance from "./components/CreateFoodInstance.vue";
 import Leashes from "./components/Leashes.vue";
 import CreateLeash from "./components/CreateLeash.vue";
+import CreateLeashInstance from "./components/CreateLeashInstance.vue";
 import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
@@ -55,6 +56,11 @@ export default new Router({
 			path: "/leash/create",
 			name: "create-leash",
 			component: CreateLeash
+		},
+		{
+			path: "/leash-instance/create",
+			name: "create-leash-instance",
+			component: CreateLeashInstance
 		},
 		{
 			path: "*",
