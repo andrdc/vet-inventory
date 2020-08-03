@@ -5,6 +5,7 @@ import Brands from "./components/Brands.vue";
 import CreateBrand from "./components/CreateBrand.vue";
 import Foods from "./components/Foods.vue";
 import CreateFood from "./components/CreateFood.vue";
+import CreateFoodInstance from "./components/CreateFoodInstance.vue";
 import Leashes from "./components/Leashes.vue";
 import CreateLeash from "./components/CreateLeash.vue";
 import NotFound from "./views/NotFound.vue";
@@ -39,6 +40,11 @@ export default new Router({
 			path: "/food/create",
 			name: "create-food",
 			component: CreateFood
+		},
+		{
+			path: "/food-instance/create",
+			name: "create-food-instance",
+			component: CreateFoodInstance
 		},
 		{
 			path: "/leashes",
