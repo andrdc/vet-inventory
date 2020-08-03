@@ -13,3 +13,22 @@ exports.leashes = (req, res, next) => {
 			 res.json(leashes);
 		});
 };
+
+/* Create new Leash */
+exports.create_leash = (req, res, next) => {
+	let leash = new Leash({
+		material: req.body.material,
+		price_vet: req.body.price_vet,
+		price_public: req.body.price_public,
+		brand: req.body.brand,
+		name: req.body.name
+	});
+
+	leash.save((err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(leash);
+	})
+}
