@@ -19,6 +19,7 @@
 				{{ leash.brand.name }}.
 			</div>
 		</div>
+		<div class="error" v-if="isLeashError">{{ leashError }}</div>
 	</div>
 </template>
 
@@ -29,7 +30,9 @@ export default {
 	name: 'leashs',
 	data(){
 		return{
-			leashes: null
+			leashes: null,
+			isLeashError: false,
+			leashError: 'Error : '
 		}
 	},
 	methods: {
@@ -43,16 +46,14 @@ export default {
 			axios.get(process.env.VUE_APP_LEASHES).then((response) => {
 				this.leashes = response.data;
 			}).catch((error) => {
+				this.isLeashError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.leashError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.leashError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.leashError += error.message;
 				}
-				console.log(error.config);
 			});
 		},
 		createLeash(){ console.log('Create new Leash'); }
