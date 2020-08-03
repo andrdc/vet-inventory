@@ -43,4 +43,14 @@ $link-focus-border: $primary;
 /* Import Bulma and Buefy styles */
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+/* Error messages */
+.error {
+	border: 2px solid $danger;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px;
+	font-weight: bold;
+	background: rgba(255, 56, 97, 0.3);
+}
 </style>
