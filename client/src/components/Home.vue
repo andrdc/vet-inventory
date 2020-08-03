@@ -23,6 +23,7 @@
 				Expiration: {{ foodinstance.expiration_date }}.
 			</div>
 		</div>
+		<div class="error" v-if="isFoodError">{{ foodError }}</div>
 		<div class="title-container">
 			<h2 class="is-size-3">Leash</h2>
 			<b-button type="is-primary"
@@ -44,6 +45,7 @@
 				Received: {{ leashinstance.receive_date }}.
 			</div>
 		</div>
+		<div class="error" v-if="isLeashError">{{ leashError }}</div>
 	</div>
 </template>
 
@@ -57,7 +59,11 @@ export default {
 		return{
 			foodinstances: null,
 			leashinstances: null,
-			dateFormat: 'DD-MM-YYYY'
+			dateFormat: 'DD-MM-YYYY',
+			isFoodError: false,
+			isLeashError: false,
+			foodError: 'Error : ',
+			leashError: 'Error : '
 		}
 	},
 	methods: {
@@ -75,16 +81,14 @@ export default {
 				this.foodinstances = response.data;
 				this.formatFoodDates();
 			}).catch((error) => {
+				this.isFoodError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.foodError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.foodError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.foodError += error.message;
 				}
-				console.log(error.config);
 			});
 		},
 		/* Get all the leash instances from the API
@@ -95,16 +99,14 @@ export default {
 				this.leashinstances = response.data;
 				this.formatLeashDates();
 			}).catch((error) => {
+				this.isLeashError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.leashError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.leashError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.leashError += error.message;
 				}
-				console.log(error.config);
 			});
 		},
 		/* Format dates of Food instances
