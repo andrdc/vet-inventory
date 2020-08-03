@@ -20,47 +20,48 @@
 				({{ food.type }}), {{ food.brand.name }}.
 			</div>
 		</div>
+		<div class="error" v-if="isFoodError">{{ foodError }}</div>
 	</div>
 </template>
 
 <script>
-import axios from 'axios';
+ import axios from 'axios';
 
-export default {
-	name: 'foods',
-	data(){
-		return{
-			foods: null
-		}
-	},
-	methods: {
-		goToFood(){
-			console.log('You clicked a food');
-		},
-		/* Get all the foods from the API
-		/* @param none : none
-		/* @return none : none */
-		getFoods(){
-			axios.get(process.env.VUE_APP_FOODS).then((response) => {
-				this.foods = response.data;
-			}).catch((error) => {
-				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				}else if(error.request){
-					console.log(error.request);
-				}else{
-					console.log('Error', error.message);
-				}
-				console.log(error.config);
-			});
-		}
-	},
-	mounted(){
-		this.getFoods();
-	}
-}
+ export default {
+	 name: 'foods',
+	 data(){
+		 return{
+			 foods: null,
+			 isFoodError: false,
+			 foodError: 'Error : '
+		 }
+	 },
+	 methods: {
+		 goToFood(){
+			 console.log('You clicked a food');
+		 },
+		 /* Get all the foods from the API
+			/* @param none : none
+			/* @return none : none */
+		 getFoods(){
+			 axios.get(process.env.VUE_APP_FOODS).then((response) => {
+				 this.foods = response.data;
+			 }).catch((error) => {
+				 this.isFoodError = true;
+				 if(error.response){
+					 this.foodError += (error.response.data + error.response.status + error.response.headers);
+				 }else if(error.request){
+					 this.foodError += error.request;
+				 }else{
+					 this.foodError += error.message;
+				 }
+			 });
+		 }
+	 },
+	 mounted(){
+		 this.getFoods();
+	 }
+ }
 </script>
 
 <style scoped>
