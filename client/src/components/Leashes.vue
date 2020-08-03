@@ -3,9 +3,10 @@
 		<div class="title-container">
 			<h2 class="is-size-3">Leashes</h2>
 			<b-button type="is-primary"
+					  tag="router-link"
+					  to="leash/create"
 					  icon-pack="fas"
-					  icon-left="plus"
-					  @click="createLeash()">
+					  icon-left="plus">
 				Add
 			</b-button>
 		</div>
@@ -55,8 +56,7 @@ export default {
 					this.leashError += error.message;
 				}
 			});
-		},
-		createLeash(){ console.log('Create new Leash'); }
+		}
 	},
 	mounted(){
 		this.getLeashes();
