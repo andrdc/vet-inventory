@@ -27,3 +27,19 @@ exports.create_brand = (req, res, next) => {
 		res.status(201).json(brand);
 	});
 };
+
+/* Edit Brand */
+exports.edit_brand = (req, res, next) => {
+	let brand = new Brand({
+		name: req.body.name,
+		_id: req.params.id
+	});
+
+	Brand.findByIdAndUpdate(req.params.id, brand, {}, (err, theBrand) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(theBrand);
+	});
+}
