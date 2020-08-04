@@ -28,6 +28,23 @@ exports.create_brand = (req, res, next) => {
 	});
 };
 
+/* Find a Brand by ID */
+exports.find_brand = (req, res, next) => {
+	Brand.findById(req.params.id).exec((err, brand) => {
+		if(err)
+			return next(err);
+
+		if(brand == null){
+			let err = new Error('Brand not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		/* Success */
+		res.json(brand);
+	});
+};
+
 /* Edit Brand */
 exports.update_brand = (req, res, next) => {
 	let brand = new Brand({
@@ -42,4 +59,4 @@ exports.update_brand = (req, res, next) => {
 		/* Success */
 		res.status(201).json(theBrand);
 	});
-}
+};
