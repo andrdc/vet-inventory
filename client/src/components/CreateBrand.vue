@@ -72,9 +72,11 @@ export default {
 		/* @return none : none */
 		updateBrand(){
 			if(this.name.match(this.regex)){
-				axios.post(process.env.VUE_APP_BRAND_UPDATE, {
+				axios.post(process.env.VUE_APP_BRAND_UPDATE + this.id, {
 					name: this.name,
 					_id: this.id
+				}).then(function (response) {
+					console.log(response);
 				});
 				this.clearInput();
 			}
