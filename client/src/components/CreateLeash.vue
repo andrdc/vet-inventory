@@ -61,6 +61,7 @@
 							</option>
 						</b-select>
 					</b-field>
+					<div class="error" v-if="isBrandError">{{ brandError }}</div>
 					<b-field horizontal>
 						<template slot="label">
 							Price Vet
@@ -131,7 +132,9 @@ export default {
 			/* Match any number from 0 to 100 including float numbers */
 			regexNum: '^[0-9]{1,3}.{0,1}[0-9]{0,2}$',
 			errorMessage: 'Only characters, no numbers',
-			errorMessageNum: 'Only numbers'
+			errorMessageNum: 'Only numbers',
+			isBrandError: false,
+			brandError: 'Error : '
 		}
 	},
 	methods: {
@@ -173,16 +176,14 @@ export default {
 			axios.get(process.env.VUE_APP_BRANDS).then((response) => {
 				this.brands = response.data;
 			}).catch((error) => {
+				this.isBrandError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.brandError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.brandError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.brandError += error.message;
 				}
-				console.log(error.config);
 			});
 		}
 	},
