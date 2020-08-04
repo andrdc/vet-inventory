@@ -51,6 +51,14 @@ export default new Router({
 			component: CreateFood
 		},
 		{
+			path: "/food/update*",
+			name: "create-food",
+			component: CreateFood,
+			props(route) {
+				return {  id: route.query.id }
+			}
+		},
+		{
 			path: "/food-instance/create",
 			name: "create-food-instance",
 			component: CreateFoodInstance
