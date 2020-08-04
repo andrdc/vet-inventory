@@ -11,12 +11,13 @@
 			</b-button>
 		</div>
 		<div class="brands-container">
-			<div class="brand"
-				 @click="goToBrand(brand)"
-				 v-for="(brand, index) in brands"
-				 :key="index">
+			<b-button class="brand"
+					  tag="router-link"
+					  :to="{ path: 'brand/update', query: { id: brand._id }}"
+					  v-for="(brand, index) in brands"
+					  :key="index">
 				{{ brand.name }}
-			</div>
+			</b-button>
 		</div>
 		<div class="error" v-if="isBrandError">{{ brandError }}</div>
 	</div>
@@ -35,9 +36,6 @@ export default {
 		}
 	},
 	methods: {
-		goToBrand(brand){
-			console.log(brand._id);
-		},
 		/* Get all the brands from the API
 		/* @param none : none
 		/* @return none : none */

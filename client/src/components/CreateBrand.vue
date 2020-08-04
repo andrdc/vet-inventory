@@ -1,6 +1,6 @@
 <template>
 	<div class="new-brand">
-		<h2 class="is-size-3 has-text-primary">Create Brand</h2>
+		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
 				<section>
@@ -22,11 +22,12 @@
 								 v-model="name"></b-input>
 					</b-field>
 				</section>
+				<div class="error" v-if="isBrandError">{{ brandError }}</div>
 				<br>
 				<span class="submit">
 					<b-button type="is-success"
 							  :disabled=submitDisabled
-							  @click="createBrand()">
+							  @click="sendBrand()">
 						Send
 					</b-button>
 				</span>
@@ -40,8 +41,13 @@ import axios from 'axios';
 
 export default {
 	name: 'create-brand',
+	props: ['id'],
 	data(){
 		return{
+			title: 'Create Brand',
+			brand: null,
+			isBrandError: false,
+			brandError: 'Error : ',
 			name: '',
 			submitDisabled: true,
 			/* Match any string with any letters that occurs at least 5 times. */
@@ -61,7 +67,45 @@ export default {
 				this.clearInput();
 			}
 		},
-		clearInput(){ this.name = ''; }
+		/* POST method to the API to update Brand
+		/* @param none : none
+		/* @return none : none */
+		updateBrand(){
+			if(this.name.match(this.regex)){
+				axios.post(process.env.VUE_APP_BRAND_UPDATE, {
+					name: this.name,
+					_id: this.id
+				});
+				this.clearInput();
+			}
+		},
+		sendBrand(){
+			if(this.id)
+				this.updateBrand();
+			else
+				this.createBrand();
+		},
+		clearInput(){ this.name = ''; },
+		getBrand(){
+			axios.get(process.env.VUE_APP_BRAND_FIND + this.id).then((response) => {
+				this.brand = response.data;
+				this.name = this.brand.name;
+			}).catch((error) => {
+				this.isBrandError = true;
+				if(error.response){
+					this.brandError += (error.response.data + error.response.status + error.response.headers);
+				}else if(error.request){
+					this.brandError += error.request;
+				}else{
+					this.brandError += error.message;
+				}
+			});
+		},
+		isThereAnID(){
+			if(this.id){
+				this.title = "Update Brand";
+			}
+		}
 	},
 	watch: {
 		name: function(){
@@ -70,6 +114,10 @@ export default {
 			else
 				this.submitDisabled = true;
 		}
+	},
+	mounted(){
+		this.isThereAnID();
+		this.getBrand();
 	}
 }
 </script>
