@@ -3,6 +3,7 @@
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
+				<div class="error" v-if="isFoodError">{{ foodError }}</div>
 				<section>
 					<b-field horizontal>
 						<template slot="label">
@@ -139,6 +140,7 @@ export default {
 	data(){
 		return{
 			title: 'Create Food',
+			food: null,
 			brands: [],
 			type: '',
 			weigth: 0,
@@ -154,7 +156,9 @@ export default {
 			errorMessage: 'Only characters, no numbers',
 			errorMessageNum: 'Only numbers',
 			isBrandError: false,
-			brandError: 'Error : '
+			brandError: 'Error : ',
+			isFoodError: false,
+			foodError: 'Error : '
 		}
 	},
 	methods: {
@@ -207,9 +211,33 @@ export default {
 					this.brandError += error.message;
 				}
 			});
-		}
+		},
+		isThereAnID(){
+			if(this.id){
+				this.title = "Update Food";
+				this.getFood();
+				return true;
+			}else{
+				return false;
+			}
+		},
+		getFood(){
+			axios.get(process.env.VUE_APP_FOODD_FIND + this.id).then((response) => {
+				this.food = response.data;
+			}).catch((error) => {
+				this.isFoodError = true;
+				if(error.response){
+					this.foodError += (error.response.data + error.response.status + error.response.headers);
+				}else if(error.request){
+					this.foodError += error.request;
+				}else{
+					this.foodError += error.message;
+				}
+			});
+		},
 	},
 	mounted(){
+		this.isThereAnID();
 		this.getBrands();
 	},
 	watch: {
