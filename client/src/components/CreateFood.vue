@@ -1,6 +1,6 @@
 <template>
 	<div class="new-food">
-		<h2 class="is-size-3 has-text-primary">Create Food</h2>
+		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
 				<section>
@@ -135,8 +135,10 @@ import axios from 'axios';
 
 export default {
 	name: 'create-food',
+	props: ['id'],
 	data(){
 		return{
+			title: 'Create Food',
 			brands: [],
 			type: '',
 			weigth: 0,
