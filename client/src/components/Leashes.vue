@@ -12,12 +12,15 @@
 		</div>
 		<div class="leashes-container">
 			<div class="leash"
-				 @click="goToLeash()"
 				 v-for="(leash, index) in leashes"
 				 :key="index">
-				{{ leash.name }} ({{ leash.material }}).
-				<br>
-				{{ leash.brand.name }}.
+				<b-button tag="router-link"
+						  :to="{ path: 'leash/update', query: { id: leash._id } }"
+						  type="is-light">
+					{{ leash.name }} ({{ leash.material }}).
+					<br>
+					{{ leash.brand.name }}.
+				</b-button>
 			</div>
 		</div>
 		<div class="error" v-if="isLeashError">{{ leashError }}</div>
@@ -37,9 +40,6 @@ export default {
 		}
 	},
 	methods: {
-		goToLeash(){
-			console.log('You clicked a leash');
-		},
 		/* Get all the leashs from the API
 		/* @param none : none
 		/* @return none : none */
