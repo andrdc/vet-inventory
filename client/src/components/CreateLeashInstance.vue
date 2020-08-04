@@ -24,6 +24,7 @@
 							</option>
 						</b-select>
 					</b-field>
+					<div class="error" v-if="isLeashError">{{ leashError }}</div>
 					<b-field horizontal label="Received Date">
 						<b-datepicker placeholder="Click to select"
 									  :min-date="minDate"
@@ -60,7 +61,9 @@ export default {
 			receive_date: null,
 			leash: null,
 			submitDisabled: true,
-			minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+			minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+			isLeashError: false,
+			leashError: 'Error : '
 		}
 	},
 	methods: {
@@ -95,16 +98,14 @@ export default {
 			axios.get(process.env.VUE_APP_LEASHES).then((response) => {
 				this.leashes = response.data;
 			}).catch((error) => {
+				this.isLeashError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.leashError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.leashError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.leashError += error.message;
 				}
-				console.log(error.config);
 			});
 		}
 	},
