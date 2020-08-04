@@ -33,6 +33,14 @@ export default new Router({
 			component: CreateBrand
 		},
 		{
+			path: "/brand/update*",
+			name: "create-brand",
+			component: CreateBrand,
+			props(route) {
+				return {  id: route.query.id }
+			}
+		},
+		{
 			path: "/foods",
 			name: "foods",
 			component: Foods
