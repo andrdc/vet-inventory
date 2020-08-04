@@ -1,8 +1,9 @@
 <template>
 	<div class="new-leash">
-		<h2 class="is-size-3 has-text-primary">Create Leash</h2>
+		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
+				<div class="error" v-if="isLeashError">{{ leashError }}</div>
 				<section>
 					<b-field horizontal>
 						<template slot="label">
@@ -118,8 +119,11 @@ import axios from 'axios';
 
 export default {
 	name: 'create-leash',
+	props: ['id'],
 	data(){
 		return{
+			title: 'Create Leash',
+			leash: null,
 			brands: [],
 			material: '',
 			price_vet: 0,
@@ -134,7 +138,9 @@ export default {
 			errorMessage: 'Only characters, no numbers',
 			errorMessageNum: 'Only numbers',
 			isBrandError: false,
-			brandError: 'Error : '
+			brandError: 'Error : ',
+			isLeashError: false,
+			leashError: 'Error : '
 		}
 	},
 	methods: {
@@ -185,9 +191,38 @@ export default {
 					this.brandError += error.message;
 				}
 			});
+		},
+		isThereAnId(){
+			if(this.id){
+				this.title = "Update Leash"
+				this.getLeash();
+				return true;
+			}else{
+				return flase;
+			}
+		},
+		getLeash(){
+			axios.get(process.env.VUE_APP_LEASH_FIND + this.id).then((response) => {
+				this.leash = response.data;
+				this.name = this.leash.name;
+				this.material = this.leash.material;
+				this.brand = this.leash.brand;
+				this.price_vet = this.leash.price_vet;
+				this.price_public = this.leash.price_public;
+			}).catch((error) => {
+				this.isLeashError = true;
+				if(error.response){
+					this.leashError += (error.response.data + error.response.status + error.response.headers);
+				}else if(error.request){
+					this.leashError += error.request;
+				}else{
+					this.leashError += error.message;
+				}
+			});
 		}
 	},
 	mounted(){
+		this.isThereAnId();
 		this.getBrands();
 	},
 	watch: {
