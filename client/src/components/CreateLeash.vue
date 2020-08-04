@@ -3,6 +3,14 @@
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
+				<b-message type="is-warning"
+						   size="is-medium"
+						   v-if="id"
+						   has-icon
+						   icon-pack="fas"
+						   icon="exclamation-triangle">
+					{{ warning }}
+				</b-message>
 				<div class="error" v-if="isLeashError">{{ leashError }}</div>
 				<section>
 					<b-field horizontal>
@@ -140,7 +148,8 @@ export default {
 			isBrandError: false,
 			brandError: 'Error : ',
 			isLeashError: false,
-			leashError: 'Error : '
+			leashError: 'Error : ',
+			warning: 'Editing this element may change other elements in the database. Proceed with caution.'
 		}
 	},
 	methods: {
