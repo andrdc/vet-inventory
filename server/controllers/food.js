@@ -32,4 +32,4 @@ exports.create_food = (req, res, next) => {
 		/* Success */
 		res.status(201).json(food);
 	})
-}
+};
