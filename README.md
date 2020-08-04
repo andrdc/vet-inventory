@@ -8,7 +8,11 @@ If you want to clone or fork this repo you'll need the following:
   * VUE_APP_FOOD_INSTANCES
   * VUE_APP_LEASH_INSTANCES
   * VUE_APP_BRANDS
+  * VUE_APP_BRAND_FIND
+  * VUE_APP_BRAND_UPDATE
   * VUE_APP_FOODS
+  * VUE_APP_FOOD_FIND
+  * VUE_APP_FOOD_UPDATE
   * VUE_APP_LEASHES
 * Environment Variables for the API:
   * MONGODB_VETINVENTORY (URL of the database)
