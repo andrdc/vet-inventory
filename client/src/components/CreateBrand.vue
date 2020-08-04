@@ -3,6 +3,7 @@
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<b-message type="is-warning"
+					   size="is-medium"
 					   v-if="id"
 					   has-icon
 					   icon-pack="fas"
