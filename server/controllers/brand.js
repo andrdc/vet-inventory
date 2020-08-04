@@ -29,7 +29,7 @@ exports.create_brand = (req, res, next) => {
 };
 
 /* Edit Brand */
-exports.edit_brand = (req, res, next) => {
+exports.update_brand = (req, res, next) => {
 	let brand = new Brand({
 		name: req.body.name,
 		_id: req.params.id
