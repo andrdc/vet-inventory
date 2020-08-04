@@ -31,4 +31,21 @@ exports.create_leash = (req, res, next) => {
 		/* Success */
 		res.status(201).json(leash);
 	})
-}
+};
+
+/* Find a Leash by ID */
+exports.find_leash = (req, res, next) => {
+	Leash.findById(req.params.id).exec((err, leash) => {
+		if(err)
+			return next(err);
+
+		if(leash === null){
+			let err = new Error('Leash not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		/* Success */
+		res.json(leash);
+	});
+};
