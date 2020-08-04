@@ -33,3 +33,20 @@ exports.create_food = (req, res, next) => {
 		res.status(201).json(food);
 	})
 };
+
+/* Find a Food by ID */
+exports.find_food = (req, res, next) => {
+	Food.findById(req.params.id).exec((err, food) => {
+		if(err)
+			return next(err);
+
+		if(food === null){
+			let err = new Error('Food not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		/* Success */
+		res.json(food);
+	});
+}
