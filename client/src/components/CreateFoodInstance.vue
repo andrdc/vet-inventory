@@ -24,6 +24,7 @@
 							</option>
 						</b-select>
 					</b-field>
+					<div class="error" v-if="isFoodError">{{ foodError }}</div>
 					<b-field horizontal label="Received Date">
 						<b-datepicker placeholder="Click to select"
 									  :min-date="minDate"
@@ -70,7 +71,9 @@ export default {
 			expiration_date: null,
 			food: null,
 			submitDisabled: true,
-			minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+			minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+			isFoodError: false,
+			foodError: 'Error : ',
 		}
 	},
 	methods: {
@@ -108,16 +111,14 @@ export default {
 			axios.get(process.env.VUE_APP_FOODS).then((response) => {
 				this.foods = response.data;
 			}).catch((error) => {
+				this.isFoodError = true;
 				if(error.response){
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					this.foodError += (error.response.data + error.response.status + error.response.headers);
 				}else if(error.request){
-					console.log(error.request);
+					this.foodError += error.request;
 				}else{
-					console.log('Error', error.message);
+					this.foodError += error.message;
 				}
-				console.log(error.config);
 			});
 		}
 	},
