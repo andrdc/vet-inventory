@@ -2,6 +2,13 @@
 	<div class="new-brand">
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
+			<b-message type="is-warning"
+					   v-if="id"
+					   has-icon
+					   icon-pack="fas"
+					   icon="exclamation-triangle">
+				{{ warning }}
+			</b-message>
 			<form class="form">
 				<section>
 					<b-field>
@@ -52,7 +59,8 @@ export default {
 			submitDisabled: true,
 			/* Match any string with any letters that occurs at least 5 times. */
 			regex: '^[a-zA-Z]{5,}$',
-			errorMessage: 'Only characters, no numbers'
+			errorMessage: 'Only characters, no numbers',
+			warning: 'Editing this element may change other elements in the database. Proceed with caution.'
 		}
 	},
 	methods: {
