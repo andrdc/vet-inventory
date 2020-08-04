@@ -130,7 +130,7 @@
 				<span class="submit">
 					<b-button type="is-success"
 							  :disabled=submitDisabled
-							  @click="createFood()">
+							  @click="sendFood()">
 						Send
 					</b-button>
 				</span>
@@ -195,6 +195,29 @@ export default {
 				price_public: this.price_public
 			});
 			this.clearInput();
+		},
+		/* POST method to the API to update Food
+		/* @param none : none
+		/* @return none : none */
+		updateFood(){
+			axios.post(process.env.VUE_APP_FOOD_UPDATE + this.id, {
+				name: this.name,
+				type: this.type,
+				brand: this.brand,
+				weigth: this.weigth,
+				price_vet: this.price_vet,
+				price_public: this.price_public,
+				_id: this.id
+			}).then(function (response) {
+				console.log(response);
+			});
+			this.clearInput();
+		},
+		sendFood(){
+			if(this.id)
+				this.updateFood();
+			else
+				this.createFood();
 		},
 		clearInput(){
 			this.name = '';
