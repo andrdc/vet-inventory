@@ -224,6 +224,12 @@ export default {
 		getFood(){
 			axios.get(process.env.VUE_APP_FOOD_FIND + this.id).then((response) => {
 				this.food = response.data;
+				this.name = this.food.name;
+				this.type = this.food.type;
+				this.brand = this.food.brand;
+				this.weigth = this.food.weigth;
+				this.price_vet = this.food.price_vet;
+				this.price_public = this.food.price_public;
 			}).catch((error) => {
 				this.isFoodError = true;
 				if(error.response){
