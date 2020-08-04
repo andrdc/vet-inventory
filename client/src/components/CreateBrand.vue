@@ -106,6 +106,10 @@ export default {
 		isThereAnID(){
 			if(this.id){
 				this.title = "Update Brand";
+				this.getBrand();
+				return true;
+			}else{
+				return false;
 			}
 		}
 	},
@@ -119,7 +123,6 @@ export default {
 	},
 	mounted(){
 		this.isThereAnID();
-		this.getBrand();
 	}
 }
 </script>
