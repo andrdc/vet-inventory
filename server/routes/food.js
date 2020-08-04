@@ -8,5 +8,6 @@ var foodController = require(path.join(__dirname, '../controllers/food'));
 /* Food Routes */
 router.get('/', foodController.foods);
 router.post('/', foodController.create_food);
+router.get('/find/:id', foodController.find_food);
 
 module.exports = router;
