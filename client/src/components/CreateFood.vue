@@ -222,7 +222,7 @@ export default {
 			}
 		},
 		getFood(){
-			axios.get(process.env.VUE_APP_FOODD_FIND + this.id).then((response) => {
+			axios.get(process.env.VUE_APP_FOOD_FIND + this.id).then((response) => {
 				this.food = response.data;
 			}).catch((error) => {
 				this.isFoodError = true;
