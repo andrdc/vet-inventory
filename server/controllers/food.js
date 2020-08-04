@@ -49,4 +49,25 @@ exports.find_food = (req, res, next) => {
 		/* Success */
 		res.json(food);
 	});
-}
+};
+
+/* Edit Food */
+exports.update_food = (req, res, next) => {
+	let food = new Food({
+		type: req.body.type,
+		weigth: req.body.weigth,
+		price_vet: req.body.price_vet,
+		price_public: req.body.price_public,
+		brand: req.body.brand,
+		name: req.body.name,
+		_id: req.params.id
+	});
+
+	Food.findByIdAndUpdate(req.params.id, food, {}, (err, theFood) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(theFood);
+	})
+};
