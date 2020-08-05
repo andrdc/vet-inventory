@@ -10,5 +10,6 @@ router.get('/', foodinstanceController.foodinstances);
 router.post('/', foodinstanceController.create_foodinstance);
 router.get('/find/:id', foodinstanceController.find_foodinstance);
 router.post('/update/:id', foodinstanceController.update_foodinstance);
+router.post('/delete/:id', foodinstanceController.delete_foodinstance);
 
 module.exports = router;

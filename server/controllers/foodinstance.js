@@ -66,3 +66,14 @@ exports.update_foodinstance = (req, res, next) => {
 		res.status(201).json(theFoodInstance);
 	});
 };
+
+/* Delete FoodInstance */
+exports.delete_foodinstance = (req, res, next) => {
+	FoodInstance.findOneAndRemove(req.params.id, (err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.json(res);
+	});
+};
