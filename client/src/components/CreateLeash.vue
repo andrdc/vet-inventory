@@ -113,7 +113,7 @@
 				<span class="submit">
 					<b-button type="is-success"
 							  :disabled=submitDisabled
-							  @click="createLeash()">
+							  @click="sendLeash()">
 						Send
 					</b-button>
 				</span>
@@ -176,6 +176,28 @@ export default {
 				price_public: this.price_public
 			});
 			this.clearInput();
+		},
+		/* POST method to the API to update Leash
+		/* @param none : none
+		/* @return none : none */
+		updateLeash(){
+			axios.post(process.env.VUE_APP_LEASH_UPDATE + this.id, {
+				name: this.name,
+				material: this.material,
+				brand: this.brand,
+				price_vet: this.price_vet,
+				price_public: this.price_public,
+				_id: this.id
+			}).then((res) => {
+				console.log(res);
+			});
+			this.clearInput();
+		},
+		sendLeash(){
+			if(this.id)
+				this.updateLeash();
+			else
+				this.createLeash();
 		},
 		clearInput(){
 			this.name = '';
