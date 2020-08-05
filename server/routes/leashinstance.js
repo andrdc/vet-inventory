@@ -8,5 +8,6 @@ var leashinstanceController = require(path.join(__dirname, '../controllers/leash
 /* FoodInstance Routes */
 router.get('/', leashinstanceController.leashinstances);
 router.post('/', leashinstanceController.create_leash_instance);
+router.get('/find/:id', leashinstanceController.find_leash_instance);
 
 module.exports = router;
