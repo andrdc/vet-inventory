@@ -64,6 +64,14 @@ export default new Router({
 			component: CreateFoodInstance
 		},
 		{
+			path: "/food-instance/update*",
+			name: "create-food-instance",
+			component: CreateFoodInstance,
+			props(route) {
+				return {  id: route.query.id }
+			}
+		},
+		{
 			path: "/leashes",
 			name: "leashes",
 			component: Leashes
