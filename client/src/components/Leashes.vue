@@ -18,14 +18,24 @@
 				<br>
 				{{ leash.brand.name }}.
 				<br>
-				<b-button tag="router-link"
-						  :to="{ path: 'leash/update', query: { id: leash._id } }"
-						  type="is-warning"
-						  icon-pack="fas"
-						  icon-left="edit"
-						  expanded>
-					Edit
-				</b-button>
+				<span class="buttons-container">
+					<b-button tag="router-link"
+							  :to="{ path: 'leash/update', query: { id: leash._id } }"
+							  type="is-warning"
+							  icon-pack="fas"
+							  icon-left="edit"
+							  expanded>
+						Edit
+					</b-button>
+					<b-button tag="router-link"
+							  :to="{ path: 'leash/delete', query: { id: leash._id } }"
+							  type="is-danger"
+							  icon-pack="fas"
+							  icon-left="trash"
+							  expanded>
+						Delete
+					</b-button>
+				</span>
 			</div>
 		</div>
 		<div class="error" v-if="isLeashError">{{ leashError }}</div>

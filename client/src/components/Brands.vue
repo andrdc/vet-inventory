@@ -16,14 +16,24 @@
 				 :key="index">
 				{{ brand.name }}
 				<br>
-				<b-button tag="router-link"
-						  :to="{ path: 'brand/update', query: { id: brand._id } }"
-						  type="is-warning"
-						  icon-pack="fas"
-						  icon-left="edit"
-						  expanded>
-					Edit
-				</b-button>
+				<span class="buttons-container">
+					<b-button tag="router-link"
+							  :to="{ path: 'brand/update', query: { id: brand._id } }"
+							  type="is-warning"
+							  icon-pack="fas"
+							  icon-left="edit"
+							  expanded>
+						Edit
+					</b-button>
+					<b-button tag="router-link"
+							  :to="{ path: 'brand/delete', query: { id: brand._id } }"
+							  type="is-danger"
+							  icon-pack="fas"
+							  icon-left="trash"
+							  expanded>
+						Delete
+					</b-button>
+				</span>
 			</div>
 		</div>
 		<div class="error" v-if="isBrandError">{{ brandError }}</div>
