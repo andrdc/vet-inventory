@@ -14,12 +14,17 @@
 			<div class="leash"
 				 v-for="(leash, index) in leashes"
 				 :key="index">
+				{{ leash.name }} ({{ leash.material }}).
+				<br>
+				{{ leash.brand.name }}.
+				<br>
 				<b-button tag="router-link"
 						  :to="{ path: 'leash/update', query: { id: leash._id } }"
-						  type="is-light">
-					{{ leash.name }} ({{ leash.material }}).
-					<br>
-					{{ leash.brand.name }}.
+						  type="is-warning"
+						  icon-pack="fas"
+						  icon-left="edit"
+						  expanded>
+					Edit
 				</b-button>
 			</div>
 		</div>
