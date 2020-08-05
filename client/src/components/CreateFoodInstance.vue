@@ -86,7 +86,7 @@ export default {
 			foodError: 'Error : ',
 			isFoodInstanceError: false,
 			foodInstanceError: 'Error : ',
-			warning: "Edit only if it's the same date that you received this product. If not, just delete it. Proceed with caution."
+			warning: "Edit only if it's the same date that you received this product. If not, don't edit it. Proceed with caution."
 		}
 	},
 	methods: {
