@@ -53,4 +53,9 @@ $link-focus-border: $primary;
 	font-weight: bold;
 	background: rgba(255, 56, 97, 0.3);
 }
+
+.buttons-container {
+	display: flex;
+	flex-flow: row nowrap;
+}
 </style>
