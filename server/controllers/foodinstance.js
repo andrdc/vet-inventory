@@ -1,4 +1,5 @@
 var FoodInstance = require('../models/foodinstance');
+const foodinstance = require('../models/foodinstance');
 
 /* Display list of Food Instances */
 exports.foodinstances = (req, res, next) => {
@@ -29,4 +30,21 @@ exports.create_foodinstance = (req, res, next) => {
 		/* Success */
 		res.status(201).json(foodinstance);
 	})
-}
+};
+
+/* Find Food Instance by Id */
+exports.find_foodinstance = (req, res, next) => {
+	FoodInstance.findById(req.params.id).exec((err, foodinstance)) => {
+		if(err)
+			return next(err);
+
+		if(foodinstance === null){
+			let err = new Error('Food Instance not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		/* Success */
+		res.json(foodinstance);
+	}
+};
