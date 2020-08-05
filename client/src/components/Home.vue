@@ -12,7 +12,6 @@
 		</div>
 		<div class="instances-container">
 			<div class="instance"
-				 @click="food()"
 				 v-for="(foodinstance, index) in foodinstances"
 				 :key="index">
 				{{ foodinstance.food.name }}, {{ foodinstance.food.weigth }} KG.
@@ -22,6 +21,15 @@
 				Received: {{ foodinstance.receive_date }}.
 				<br>
 				Expiration: {{ foodinstance.expiration_date }}.
+				<br>
+				<b-button tag="router-link"
+						  :to="{ path: 'food-instance/update', query: { id: foodinstance._id } }"
+						  type="is-warning"
+						  icon-pack="fas"
+						  icon-left="edit"
+						  expanded>
+					Edit
+				</b-button>
 			</div>
 		</div>
 		<div class="error" v-if="isFoodError">{{ foodError }}</div>
@@ -37,7 +45,6 @@
 		</div>
 		<div class="instances-container">
 			<div class="instance"
-				 @click="leash()"
 				 v-for="(leashinstance, index) in leashinstances"
 				 :key="index">
 				{{ leashinstance.leash.name }} ({{ leashinstance.leash.material }}).
@@ -45,6 +52,15 @@
 				{{ leashinstance.leash.brand.name }}.
 				<br>
 				Received: {{ leashinstance.receive_date }}.
+				<br>
+				<b-button tag="router-link"
+						  :to="{ path: 'leash-instance/update', query: { id: leashinstance._id } }"
+						  type="is-warning"
+						  icon-pack="fas"
+						  icon-left="edit"
+						  expanded>
+					Edit
+				</b-button>
 			</div>
 		</div>
 		<div class="error" v-if="isLeashError">{{ leashError }}</div>
@@ -69,12 +85,6 @@ export default {
 		}
 	},
 	methods: {
-		food(){
-			console.log('You clicked a food instance');
-		},
-		leash(){
-			console.log('You clicked a leash instance');
-		},
 		/* Get all the food instances from the API
 		/* @param none : none
 		/* @return none : none */
@@ -140,6 +150,10 @@ export default {
 .home {
 	margin: 5px;
 	padding: 5px;
+}
+
+button {
+	margin-top: 10px;
 }
 
 .title-container {
