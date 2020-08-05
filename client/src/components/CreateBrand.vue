@@ -2,15 +2,8 @@
 	<div class="new-brand">
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
-			<b-message type="is-warning"
-					   size="is-medium"
-					   v-if="id"
-					   has-icon
-					   icon-pack="fas"
-					   icon="exclamation-triangle">
-				{{ warning }}
-			</b-message>
 			<form class="form">
+				<WarningMessage v-if="id"></WarningMessage>
 				<section>
 					<b-field>
 						<template slot="label">
@@ -46,10 +39,14 @@
 
 <script>
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue';
 
 export default {
 	name: 'create-brand',
 	props: ['id'],
+	components: {
+		WarningMessage
+	},
 	data(){
 		return{
 			title: 'Create Brand',

@@ -3,14 +3,7 @@
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
-				<b-message type="is-warning"
-						   size="is-medium"
-						   v-if="id"
-						   has-icon
-						   icon-pack="fas"
-						   icon="exclamation-triangle">
-					{{ warning }}
-				</b-message>
+				<WarningMessage v-if="id"></WarningMessage>
 				<div class="error" v-if="isFoodError">{{ foodError }}</div>
 				<section>
 					<b-field horizontal>
@@ -141,10 +134,14 @@
 
 <script>
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue'
 
 export default {
 	name: 'create-food',
 	props: ['id'],
+	components: {
+		WarningMessage
+	},
 	data(){
 		return{
 			title: 'Create Food',
@@ -166,8 +163,7 @@ export default {
 			isBrandError: false,
 			brandError: 'Error : ',
 			isFoodError: false,
-			foodError: 'Error : ',
-			warning: 'Editing this element may change other elements in the database. Proceed with caution.'
+			foodError: 'Error : '
 		}
 	},
 	methods: {
