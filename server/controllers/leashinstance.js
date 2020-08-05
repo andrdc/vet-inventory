@@ -46,3 +46,23 @@ exports.find_leash_instance = (req, res, next) => {
 		res.json(leashinstance);
 	});
 };
+
+/* Update Leash Instance */
+exports.update_leash_instance = (req, res, next) => {
+	let leashinstance = new LeashInstance({
+		leash: req.body.leash,
+		receive_date: req.body.receive_date,
+		_id: req.params.id
+	});
+
+	LeashInstance.findByIdAndUpdate(req.params.id,
+									leashinstance,
+									{},
+									(err, theLeashInstance) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(theLeashInstance);
+	});
+};
