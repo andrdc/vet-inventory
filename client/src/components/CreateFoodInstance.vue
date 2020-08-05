@@ -101,7 +101,7 @@ export default {
 			});
 			this.clearInput();
 		},
-		/* POST method to the API to update Leash Instance
+		/* POST method to the API to update Food Instance
 		/* @param none : none
 		/* @return none : none */
 		updateFoodInstance(){
