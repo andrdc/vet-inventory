@@ -42,7 +42,7 @@
 				<span class="submit">
 					<b-button type="is-success"
 							  :disabled=submitDisabled
-							  @click="createLeashInstance()">
+							  @click="sendLeashInstance()">
 						Send
 					</b-button>
 				</span>
@@ -90,6 +90,25 @@ export default {
 			});
 			this.clearInput();
 		},
+		/* POST method to the API to update Leash Instance
+		/* @param none : none
+		/* @return none : none */
+		updateLeashInstance(){
+			axios.post(process.env.VUE_APP_LEASH_INSTANCE_UPDATE + this.id, {
+				food: this.food,
+				receive_date: this.receive_date,
+				_id: this.id
+			}).then((res) => {
+				console.log(res);
+			});
+			this.clearInput();
+		},
+		sendLeashInstance(){
+			if(this.id)
+				this.updateLeashInstance();
+			else
+				this.createLeashInstance();
+		},
 		clearInput(){
 			this.leash = null;
 			this.receive_date = null;
@@ -130,11 +149,14 @@ export default {
 				return false;
 			}
 		},
+		/* Get Leash Instance by id from the API
+		/* @param none : none
+		/* @return none : none */
 		getLeashInstance(){
 			axios.get(process.env.VUE_APP_LEASH_INSTANCE_FIND + this.id).then((res) => {
 				this.leashinstance = res.data;
 				this.leash = this.leashinstance.leash;
-				this.receive_date = this.leashinstance.receive_date;
+				this.receive_date = this.getDateFromString(this.leashinstance.receive_date);
 			}).catch((err) => {
 				this.isLeashInstanceError = true;
 				if(err.response){
@@ -145,6 +167,21 @@ export default {
 					this.leashInstanceError += err.message;
 				}
 			});
+		},
+		getDateFromString(str){
+			let date = new Date();
+			let day = '';
+			let month = '';
+			let year = '';
+
+			year = str[0] + str[1] + str[2] + str[3];
+			month = str[5] + str[6];
+			day = str[8] + str[9];
+			date.setDate(day);
+			date.setMonth(month);
+			date.setYear(year);
+
+			return date;
 		}
 	},
 	mounted(){
