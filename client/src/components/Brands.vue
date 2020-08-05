@@ -11,13 +11,20 @@
 			</b-button>
 		</div>
 		<div class="brands-container">
-			<b-button class="brand"
-					  tag="router-link"
-					  :to="{ path: 'brand/update', query: { id: brand._id }}"
-					  v-for="(brand, index) in brands"
-					  :key="index">
+			<div class="brand"
+				 v-for="(brand, index) in brands"
+				 :key="index">
 				{{ brand.name }}
-			</b-button>
+				<br>
+				<b-button tag="router-link"
+						  :to="{ path: 'brand/update', query: { id: brand._id } }"
+						  type="is-warning"
+						  icon-pack="fas"
+						  icon-left="edit"
+						  expanded>
+					Edit
+				</b-button>
+			</div>
 		</div>
 		<div class="error" v-if="isBrandError">{{ brandError }}</div>
 	</div>
