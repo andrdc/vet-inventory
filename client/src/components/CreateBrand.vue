@@ -3,7 +3,7 @@
 		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
-				<WarningMessage v-if="id"></WarningMessage>
+				<WarningMessage v-if="id" :message="warning"></WarningMessage>
 				<section>
 					<b-field>
 						<template slot="label">

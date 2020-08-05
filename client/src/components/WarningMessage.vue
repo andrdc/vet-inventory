@@ -4,7 +4,7 @@
 			   has-icon
 			   icon-pack="fas"
 			   icon="exclamation-triangle">
-		{{ warning }}
+		{{ message }}
 	</b-message>
 </template>
 
@@ -12,10 +12,6 @@
 /* eslint-disable */
 export default {
 	name: 'warning-message',
-	data(){
-		return {
-			warning: 'Editing this element may change other elements in the database. Proceed with caution.'
-		}
-	}
+	props: ['message']
 }
 </script>
