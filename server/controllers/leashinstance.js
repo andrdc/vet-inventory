@@ -29,3 +29,20 @@ exports.create_leash_instance = (req, res, next) => {
 		res.status(201).json(leashinstance);
 	});
 };
+
+/* Find Leash Instance by Id */
+exports.find_leash_instance = (req, res, next) => {
+	LeashInstance.findById(req.params.id).exec((err, leashinstance) => {
+		if(err)
+			return next(err);
+
+		if(leashinstance === null){
+			let err = new Error('LeashInstance not found');
+			err.status = 404;
+			return next(err);
+		}
+
+		/* Success */
+		res.json(leashinstance);
+	});
+};
