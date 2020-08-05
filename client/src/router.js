@@ -12,7 +12,7 @@ import CreateLeashInstance from "./components/CreateLeashInstance.vue";
 import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
-
+/* eslint-disabled */
 export default new Router({
 	mode: "history",
 	base: process.env.BASE_URL,
