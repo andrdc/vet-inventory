@@ -95,6 +95,14 @@ export default new Router({
 			component: CreateLeashInstance
 		},
 		{
+			path: "/leash-instance/update*",
+			name: "create-leash-instance",
+			component: CreateLeashInstance,
+			props(route) {
+				return {  id: route.query.id }
+			}
+		},
+		{
 			path: "*",
 			name: "not found",
 			component: NotFound
