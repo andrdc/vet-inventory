@@ -14,12 +14,17 @@
 			<div class="food"
 				 v-for="(food, index) in foods"
 				 :key="index">
+				{{ food.name }}, {{ food.weigth }} KG.
+				<br>
+				({{ food.type }}), {{ food.brand.name }}.
+				<br>
 				<b-button tag="router-link"
 						  :to="{ path: 'food/update', query: { id: food._id } }"
-						  type="is-light">
-					{{ food.name }}, {{ food.weigth }} KG.
-					<br>
-					({{ food.type }}), {{ food.brand.name }}.
+						  type="is-warning"
+						  icon-pack="fas"
+						  icon-left="edit"
+						  expanded>
+					Edit
 				</b-button>
 			</div>
 		</div>
