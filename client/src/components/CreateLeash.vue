@@ -116,6 +116,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios';
 import WarningMessage from '@/components/WarningMessage';
 
@@ -145,8 +146,7 @@ export default {
 			isBrandError: false,
 			brandError: 'Error : ',
 			isLeashError: false,
-			leashError: 'Error : ',
-			warning: 'Editing this element may change other elements in the database. Proceed with caution.'
+			leashError: 'Error : '
 		}
 	},
 	methods: {
