@@ -49,3 +49,23 @@ exports.find_leash = (req, res, next) => {
 		res.json(leash);
 	});
 };
+
+/* Update Leash */
+exports.update_leash = (req, res, next) => {
+	let leash = new Leash({
+		material: req.body.material,
+		price_vet: req.body.price_vet,
+		price_public: req.body.price_public,
+		brand: req.body.brand,
+		name: req.body.name,
+		_id: req.params.id
+	});
+
+	Leash.findByIdAndUpdate(req.params.id, leash, {}, (err, theLeash) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(theLeash);
+	});
+};
