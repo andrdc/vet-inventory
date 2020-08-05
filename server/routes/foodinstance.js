@@ -9,5 +9,6 @@ var foodinstanceController = require(path.join(__dirname, '../controllers/foodin
 router.get('/', foodinstanceController.foodinstances);
 router.post('/', foodinstanceController.create_foodinstance);
 router.get('/find/:id', foodinstanceController.find_foodinstance);
+router.get('/update/:id', foodinstanceController.update_foodinstance);
 
 module.exports = router;

@@ -48,3 +48,21 @@ exports.find_foodinstance = (req, res, next) => {
 		res.json(foodinstance);
 	});
 };
+
+/* Update FoodInstance */
+exports.update_foodinstance = (req, res, next) => {
+	let foodinstance = new FoodInstance({
+		food: req.body.food,
+		receive_date: req.body.receive_date,
+		expiration_date: req.body.expiration_date,
+		_id: req.params.id
+	});
+
+	FoodInstance.findByIdAndUpdate(req.params.id, foodinstance, {}, (err, theFoodInstance) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(201).json(theFoodInstance);
+	});
+};
