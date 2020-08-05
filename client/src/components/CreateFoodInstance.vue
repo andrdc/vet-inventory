@@ -51,7 +51,7 @@
 				<span class="submit">
 					<b-button type="is-success"
 							  :disabled=submitDisabled
-							  @click="createFoodInstance()">
+							  @click="sendFoodInstance()">
 						Send
 					</b-button>
 				</span>
@@ -100,6 +100,26 @@ export default {
 				expiration_date: this.expiration_date
 			});
 			this.clearInput();
+		},
+		/* POST method to the API to update Leash Instance
+		/* @param none : none
+		/* @return none : none */
+		updateFoodInstance(){
+			axios.post(process.env.VUE_APP_FOOD_INSTANCE_UPDATE + this.id, {
+				food: this.food,
+				receive_date: this.receive_date,
+				expiration_date: this.expiration_date,
+				_id: this.id
+			}).then((res) => {
+				console.log(res);
+			});
+			this.clearInput();
+		},
+		sendFoodInstance(){
+			if(this.id)
+				this.updateFoodInstance();
+			else
+				this.createFoodInstance();
 		},
 		clearInput(){
 			this.food = null;
@@ -151,8 +171,8 @@ export default {
 				 .then((response) => {
 					this.foodinstance = response.data;
 					this.food = this.foodinstance.food;
-					this.receive_date = this.foodinstance.receive_date;
-					this.expiration_date = this.foodinstance.expiration_date;
+					this.receive_date = this.getDateFromString(this.foodinstance.receive_date);
+					this.expiration_date = this.getDateFromString(this.foodinstance.expiration_date);
 				}).catch((error) => {
 					this.isFoodInstanceError = true;
 					if(error.response){
@@ -163,6 +183,21 @@ export default {
 						this.foodInstanceError += error.message;
 					}
 				});
+		},
+		getDateFromString(str){
+			let date = new Date();
+			let day = '';
+			let month = '';
+			let year = '';
+
+			year = str[0] + str[1] + str[2] + str[3];
+			month = str[5] + str[6];
+			day = str[8] + str[9];
+			date.setDate(day);
+			date.setMonth(month);
+			date.setYear(year);
+
+			return date;
 		}
 	},
 	mounted(){
