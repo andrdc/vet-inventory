@@ -34,7 +34,7 @@ exports.create_foodinstance = (req, res, next) => {
 
 /* Find Food Instance by Id */
 exports.find_foodinstance = (req, res, next) => {
-	FoodInstance.findById(req.params.id).exec((err, foodinstance)) => {
+	FoodInstance.findById(req.params.id).exec((err, foodinstance) => {
 		if(err)
 			return next(err);
 
@@ -46,5 +46,5 @@ exports.find_foodinstance = (req, res, next) => {
 
 		/* Success */
 		res.json(foodinstance);
-	}
+	});
 };
