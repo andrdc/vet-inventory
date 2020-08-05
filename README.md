@@ -6,7 +6,11 @@ If you want to clone or fork this repo you'll need the following:
 * .env file in the client folder. This file needs the variables listed
   down here. Each variable is the corresponding URL for your API's calls.
   * VUE_APP_FOOD_INSTANCES
+  * VUE_APP_FOOD_INSTANCE_FIND
+  * VUE_APP_FOOD_INSTANCE_UPDATE
   * VUE_APP_LEASH_INSTANCES
+  * VUE_APP_LEASH_INSTANCE_FIND
+  * VUE_APP_LEASH_INSTANCE_UPDATE
   * VUE_APP_BRANDS
   * VUE_APP_BRAND_FIND
   * VUE_APP_BRAND_UPDATE
