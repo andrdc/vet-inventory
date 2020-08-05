@@ -1,8 +1,10 @@
 <template>
 	<div class="new-leash-instance">
-		<h2 class="is-size-3 has-text-primary">Create Leash Instance</h2>
+		<h2 class="is-size-3 has-text-primary">{{ title }}</h2>
 		<div class="form-container">
 			<form class="form">
+				<WarningMessage v-if="id" :message="warning"></WarningMessage>
+				<div class="error" v-if="isLeashInstanceError">{{ leashInstanceError }}</div>
 				<section>
 					<b-field horizontal>
 						<template slot="label">
@@ -50,20 +52,31 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue';
 
 export default {
 	name: 'create-leash-instance',
+	props: ['id'],
+	components: {
+		WarningMessage
+	},
 	data(){
 		const today = new Date();
 		return{
+			title: 'Create Leash Instance',
+			leashinstance: null,
 			leashes: [],
 			receive_date: null,
 			leash: null,
 			submitDisabled: true,
 			minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
 			isLeashError: false,
-			leashError: 'Error : '
+			leashError: 'Error : ',
+			isLeashInstanceError: false,
+			leashInstanceError: 'Error : ',
+			warning: "Edit only if it's the same date that you received this product. If not, don't edit it. Proceed with caution."
 		}
 	},
 	methods: {
@@ -107,10 +120,36 @@ export default {
 					this.leashError += error.message;
 				}
 			});
+		},
+		isThereAnId(){
+			if(this.id){
+				this.title = 'Update Leash Instance';
+				this.getLeashInstance();
+				return true;
+			}else{
+				return false;
+			}
+		},
+		getLeashInstance(){
+			axios.get(process.env.VUE_APP_LEASH_INSTANCE_FIND + this.id).then((res) => {
+				this.leashinstance = res.data;
+				this.leash = this.leashinstance.leash;
+				this.receive_date = this.leashinstance.receive_date;
+			}).catch((err) => {
+				this.isLeashInstanceError = true;
+				if(err.response){
+					this.leashInstanceError += (err.response.data + err.response.status + err.response.headers);
+				}else if(err.request){
+					this.leashInstanceError += err.request;
+				}else{
+					this.leashInstanceError += err.message;
+				}
+			});
 		}
 	},
 	mounted(){
 		this.getLeashes();
+		this.isThereAnId();
 	},
 	watch: {
 		leash: function(){ this.validateInput(); },
