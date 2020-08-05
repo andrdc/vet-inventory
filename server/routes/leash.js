@@ -9,5 +9,6 @@ var leashController = require(path.join(__dirname, '../controllers/leash'));
 router.get('/', leashController.leashes);
 router.post('/', leashController.create_leash);
 router.get('/find/:id', leashController.find_leash);
+router.post('/update/:id', leashController.update_leash);
 
 module.exports = router;
