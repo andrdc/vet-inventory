@@ -71,3 +71,14 @@ exports.update_food = (req, res, next) => {
 		res.status(201).json(theFood);
 	})
 };
+
+/* Delete Food by ID */
+exports.delete_food = (req, res, next) => {
+	Food.findByIdAndRemove(req.params.id, (err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(200).end();
+	});
+};
