@@ -54,6 +54,7 @@ export default {
 			brands: null,
 			isBrandError: false,
 			brandError: 'Error : ',
+			brandKey: 0,
 			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
 		}
 	},
@@ -82,13 +83,16 @@ export default {
 			axios.post(process.env.VUE_APP_BRAND_DELETE + id).then((res) => {
 				console.log(res);
 			});
+			this.brandKey += 1;
 		}
 	},
 	mounted(){
 		this.getBrands();
 	},
-	updated(){
-		this.getBrands();
+	watch: {
+		brandKey: function(){
+			this.getBrands();
+		}
 	}
 }
 </script>
