@@ -100,7 +100,9 @@ export default {
 			isFoodError: false,
 			isLeashError: false,
 			foodError: 'Error : ',
-			leashError: 'Error : '
+			leashError: 'Error : ',
+			foodKey: 0,
+			leashKey: 0
 		}
 	},
 	methods: {
@@ -165,6 +167,7 @@ export default {
 				 .then((res) => {
 				console.log(res);
 			});
+			this.foodKey += 1;
 		},
 		/* Delete LeashInstance by id
 		/* @param none : none
@@ -174,15 +177,20 @@ export default {
 				 .then((res) => {
 				console.log(res);
 			});
+			this.leashLey += 1;
 		}
 	},
 	mounted(){
 		this.getFoodInstances();
 		this.getLeashInstances();
 	},
-	updated(){
-		this.getFoodInstances();
-		this.getLeashInstances();
+	watch: {
+		foodKey: function(){
+			this.getFoodInstances();
+		},
+		leashKey: function(){
+			this.getLeashInstances();
+		}
 	}
 }
 </script>
