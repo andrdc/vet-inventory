@@ -10,6 +10,7 @@
 				Add
 			</b-button>
 		</div>
+		<WarningMessage :message="warning" ></WarningMessage>
 		<div class="foods-container">
 			<div class="food"
 				 v-for="(food, index) in foods"
@@ -43,14 +44,17 @@
 
 <script>
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue';
 
 export default {
 	name: 'foods',
+	components: { WarningMessage },
 	data(){
 		return{
 			foods: null,
 			isFoodError: false,
-			foodError: 'Error : '
+			foodError: 'Error : ',
+			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
 		}
 	},
 	methods: {
