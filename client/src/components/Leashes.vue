@@ -10,6 +10,7 @@
 				Add
 			</b-button>
 		</div>
+		<WarningMessage :message="warning" ></WarningMessage>
 		<div class="leashes-container">
 			<div class="leash"
 				 v-for="(leash, index) in leashes"
@@ -27,8 +28,7 @@
 							  expanded>
 						Edit
 					</b-button>
-					<b-button tag="router-link"
-							  :to="{ path: 'leash/delete', query: { id: leash._id } }"
+					<b-button @click="deleteLeash(leash._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -44,14 +44,18 @@
 
 <script>
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue';
 
 export default {
 	name: 'leashs',
+	components: { WarningMessage },
 	data(){
 		return{
 			leashes: null,
 			isLeashError: false,
-			leashError: 'Error : '
+			leashError: 'Error : ',
+			leashKey: 0,
+			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
 		}
 	},
 	methods: {
@@ -71,10 +75,24 @@ export default {
 					this.leashError += error.message;
 				}
 			});
+		},
+		/* Delete Leash by ID
+		/* @param none : none
+		/* @return none : none */
+		deleteLeash(id){
+			axios.post(process.env.VUE_APP_LEASH_DELETE + id).then((res) => {
+				console.log(res)
+			});
+			this.leashKey += 1;
 		}
 	},
 	mounted(){
 		this.getLeashes();
+	},
+	watch: {
+		leashKey: function() {
+			this.getLeashes();
+		}
 	}
 }
 </script>
