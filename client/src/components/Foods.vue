@@ -27,8 +27,7 @@
 							  expanded>
 						Edit
 					</b-button>
-					<b-button tag="router-link"
-							  :to="{ path: 'food/delete', query: { id: food._id } }"
+					<b-button @click="deleteFood(food._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -71,9 +70,20 @@ export default {
 					this.foodError += error.message;
 				}
 			});
+		},
+		/* Delete Food by ID
+		/* @param none : none
+		/* @return none : none */
+		deleteFood(id){
+			axios.post(process.env.VUE_APP_FOOD_DELETE + id).then((res) => {
+				console.log(res);
+			});
 		}
 	},
 	mounted(){
+		this.getFoods();
+	},
+	updated(){
 		this.getFoods();
 	}
 }
