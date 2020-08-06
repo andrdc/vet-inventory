@@ -54,6 +54,7 @@ export default {
 			foods: null,
 			isFoodError: false,
 			foodError: 'Error : ',
+			foodKey: 0,
 			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
 		}
 	},
@@ -82,13 +83,16 @@ export default {
 			axios.post(process.env.VUE_APP_FOOD_DELETE + id).then((res) => {
 				console.log(res);
 			});
+			this.foodKey += 1;
 		}
 	},
 	mounted(){
 		this.getFoods();
 	},
-	updated(){
-		this.getFoods();
+	watch: {
+		foodKey: function(){
+			this.getFoods();
+		}
 	}
 }
 </script>
