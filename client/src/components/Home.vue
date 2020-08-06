@@ -71,11 +71,7 @@
 							  expanded>
 						Edit
 					</b-button>
-					<b-button tag="router-link"
-							  :to="{
-								  path: 'leash-instance/delete',
-								  query: { id: leashinstance._id, what: 'leash' }
-							  }"
+					<b-button @click="deleteLeashInstance(leashinstance._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -169,6 +165,15 @@ export default {
 				 .then((res) => {
 				console.log(res);
 			});
+		},
+		/* Delete LeashInstance by id
+		/* @param none : none
+		/* @return none : none */
+		deleteLeashInstance(instance_id){
+			axios.post(process.env.VUE_APP_LEASH_INSTANCE_DELETE + instance_id)
+				 .then((res) => {
+				console.log(res);
+			});
 		}
 	},
 	mounted(){
@@ -177,6 +182,7 @@ export default {
 	},
 	updated(){
 		this.getFoodInstances();
+		this.getLeashInstances();
 	}
 }
 </script>
