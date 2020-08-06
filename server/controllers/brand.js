@@ -60,3 +60,14 @@ exports.update_brand = (req, res, next) => {
 		res.status(201).json(theBrand);
 	});
 };
+
+/* Delete Brand by ID */
+exports.delete_brand = (req, res, next) => {
+	Brand.findByIdAndRemove(req.params.id, (err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(200).end();
+	});
+};
