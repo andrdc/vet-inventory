@@ -227,7 +227,7 @@ export default {
 				this.getLeash();
 				return true;
 			}else{
-				return flase;
+				return false;
 			}
 		},
 		getLeash(){
