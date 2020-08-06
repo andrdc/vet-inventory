@@ -1,5 +1,9 @@
 <template>
 	<div class="home">
+		<b-field label="Admin Password">
+			<b-input type="password" v-model="admin">
+			</b-input>
+		</b-field>
 		<div class="title-container">
 			<h2 class="is-size-3">Food</h2>
 			<b-button type="is-primary"
@@ -28,14 +32,14 @@
 							  type="is-warning"
 							  icon-pack="fas"
 							  icon-left="edit"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Edit
 					</b-button>
 					<b-button @click="deleteFoodInstance(foodinstance._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Delete
 					</b-button>
 				</span>
@@ -68,14 +72,14 @@
 							  type="is-warning"
 							  icon-pack="fas"
 							  icon-left="edit"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Edit
 					</b-button>
 					<b-button @click="deleteLeashInstance(leashinstance._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Delete
 					</b-button>
 				</span>
@@ -102,7 +106,9 @@ export default {
 			foodError: 'Error : ',
 			leashError: 'Error : ',
 			foodKey: 0,
-			leashKey: 0
+			leashKey: 0,
+			admin: '',
+			isNotAdmin: true
 		}
 	},
 	methods: {
@@ -190,6 +196,12 @@ export default {
 		},
 		leashKey: function(){
 			this.getLeashInstances();
+		},
+		admin: function(){
+			if(this.admin === process.env.VUE_APP_ADMIN_PASS)
+				this.isNotAdmin = false;
+			else
+				this.isNotAdmin = true;
 		}
 	}
 }
