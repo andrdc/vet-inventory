@@ -1,5 +1,4 @@
 var FoodInstance = require('../models/foodinstance');
-const foodinstance = require('../models/foodinstance');
 
 /* Display list of Food Instances */
 exports.foodinstances = (req, res, next) => {
@@ -69,11 +68,11 @@ exports.update_foodinstance = (req, res, next) => {
 
 /* Delete FoodInstance */
 exports.delete_foodinstance = (req, res, next) => {
-	FoodInstance.findOneAndRemove(req.params.id, (err) => {
+	FoodInstance.findByIdAndRemove(req.params.id, (err) => {
 		if(err)
 			return next(err);
 
 		/* Success */
-		res.json(res);
+		res.status(200).end();
 	});
 };
