@@ -25,6 +25,7 @@ If you want to clone or fork this repo you'll need the following:
   * VUE_APP_LEASH_FIND
   * VUE_APP_LEASH_UPDATE
   * VUE_APP_LEASH_DELETE
+  * VUE_APP_ADMIN_PASS
 * Environment Variables for the API:
   * MONGODB_VETINVENTORY (URL of the database)
   * VETINVENTORY_ROUTE_BRAND
