@@ -66,3 +66,14 @@ exports.update_leash_instance = (req, res, next) => {
 		res.status(201).json(theLeashInstance);
 	});
 };
+
+/* Delete LeashInstance by ID */
+exports.delete_leash_instance = (req, res, next) => {
+	LeashInstance.findByIdAndRemove(req.params.id, (err) => {
+		if(err)
+			return next(err);
+
+		/* Succes */
+		res.status(200).end();
+	});
+};
