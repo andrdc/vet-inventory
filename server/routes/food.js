@@ -10,5 +10,6 @@ router.get('/', foodController.foods);
 router.post('/', foodController.create_food);
 router.get('/find/:id', foodController.find_food);
 router.post('/update/:id', foodController.update_food);
+router.post('/delete/:id', foodController.delete_food);
 
 module.exports = router;
