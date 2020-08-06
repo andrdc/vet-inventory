@@ -10,6 +10,7 @@
 				Add
 			</b-button>
 		</div>
+		<WarningMessage :message="warning" ></WarningMessage>
 		<div class="brands-container">
 			<div class="brand"
 				 v-for="(brand, index) in brands"
@@ -41,14 +42,19 @@
 
 <script>
 import axios from 'axios';
+import WarningMessage from '@/components/WarningMessage.vue';
 
 export default {
 	name: 'brands',
+	components: {
+		WarningMessage
+	},
 	data(){
 		return{
 			brands: null,
 			isBrandError: false,
-			brandError: 'Error : '
+			brandError: 'Error : ',
+			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
 		}
 	},
 	methods: {
