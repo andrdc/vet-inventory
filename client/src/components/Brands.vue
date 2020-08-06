@@ -1,5 +1,9 @@
 <template>
 	<div class="brands">
+		<b-field label="Admin Password">
+			<b-input type="password" v-model="admin">
+			</b-input>
+		</b-field>
 		<div class="title-container">
 			<h2 class="is-size-3">Brands</h2>
 			<b-button type="is-primary"
@@ -23,14 +27,14 @@
 							  type="is-warning"
 							  icon-pack="fas"
 							  icon-left="edit"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Edit
 					</b-button>
 					<b-button @click="deleteBrand(brand._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
-							  expanded>
+							  expanded :disabled=isNotAdmin>
 						Delete
 					</b-button>
 				</span>
@@ -55,7 +59,9 @@ export default {
 			isBrandError: false,
 			brandError: 'Error : ',
 			brandKey: 0,
-			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.'
+			warning: 'Delete any element may cause severe errors in other elements. Proceed with caution.',
+			admin: '',
+			isNotAdmin: true
 		}
 	},
 	methods: {
@@ -92,6 +98,12 @@ export default {
 	watch: {
 		brandKey: function(){
 			this.getBrands();
+		},
+		admin: function(){
+			if(this.admin === process.env.VUE_APP_ADMIN_PASS)
+				this.isNotAdmin = false;
+			else
+				this.isNotAdmin = true;
 		}
 	}
 }
