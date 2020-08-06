@@ -25,8 +25,7 @@
 							  expanded>
 						Edit
 					</b-button>
-					<b-button tag="router-link"
-							  :to="{ path: 'brand/delete', query: { id: brand._id } }"
+					<b-button @click="deleteBrand(brand._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -69,9 +68,20 @@ export default {
 					this.brandError += error.message;
 				}
 			});
+		},
+		/* Delete API's method
+		/* @param none : none
+		/* @return none : none */
+		deleteBrand(id){
+			axios.post(process.env.VUE_APP_BRAND_DELETE + id).then((res) => {
+				console.log(res);
+			});
 		}
 	},
 	mounted(){
+		this.getBrands();
+	},
+	updated(){
 		this.getBrands();
 	}
 }
