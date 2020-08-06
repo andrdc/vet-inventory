@@ -31,8 +31,7 @@
 							  expanded>
 						Edit
 					</b-button>
-					<b-button tag="router-link"
-							  :to="{ path: 'food-instance/delete', query: { id: foodinstance._id } }"
+					<b-button @click="deleteFoodInstance(foodinstance._id)"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -73,7 +72,10 @@
 						Edit
 					</b-button>
 					<b-button tag="router-link"
-							  :to="{ path: 'leash-instance/delete', query: { id: leashinstance._id } }"
+							  :to="{
+								  path: 'leash-instance/delete',
+								  query: { id: leashinstance._id, what: 'leash' }
+							  }"
 							  type="is-danger"
 							  icon-pack="fas"
 							  icon-left="trash"
@@ -158,11 +160,23 @@ export default {
 			this.leashinstances.forEach(instance => {
 				instance.receive_date = moment(instance.receive_date).format(this.dateFormat);
 			});
+		},
+		/* Delete FoodInstance by id
+		/* @param none : none
+		/* @return none : none */
+		deleteFoodInstance(instance_id){
+			axios.post(process.env.VUE_APP_FOOD_INSTANCE_DELETE + instance_id)
+				 .then((res) => {
+				console.log(res);
+			});
 		}
 	},
 	mounted(){
 		this.getFoodInstances();
 		this.getLeashInstances();
+	},
+	updated(){
+		this.getFoodInstances();
 	}
 }
 </script>
@@ -171,10 +185,6 @@ export default {
 .home {
 	margin: 5px;
 	padding: 5px;
-}
-
-button {
-	margin-top: 10px;
 }
 
 .title-container {
