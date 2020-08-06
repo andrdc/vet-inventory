@@ -69,3 +69,14 @@ exports.update_leash = (req, res, next) => {
 		res.status(201).json(theLeash);
 	});
 };
+
+/* Delete Leash by ID */
+exports.delete_leash = (req, res, next) => {
+	Leash.findByIdAndRemove(req.params.id, (err) => {
+		if(err)
+			return next(err);
+
+		/* Success */
+		res.status(200).end();
+	});
+};
